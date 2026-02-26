@@ -1,0 +1,12 @@
+# Vercel deployment files
+.vercel
+
+# Development files
+.DS_Store
+*.log
+node_modules/
+
+# Environment files - NEVER commit these!
+.env
+.env.local
+.env*.local
