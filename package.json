@@ -1,0 +1,8 @@
+{
+    "name": "leadership-companion",
+    "version": "1.0.0",
+    "dependencies": {
+      "googleapis": "^105.0.0",
+      "stripe": "^14.0.0"
+    }
+  }
