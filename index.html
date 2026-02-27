@@ -1096,27 +1096,12 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Nav scroll effect
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
             nav.classList.toggle('scrolled', window.scrollY > 40);
         });
-
-        // Reveal on scroll
-        const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, index * 80);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-        reveals.forEach(el => observer.observe(el));
 
         // Tier selection
         let selectedTier = 'waitlist';
@@ -1139,18 +1124,13 @@
                 submitBtn.textContent = 'Join Waitlist';
                 finePrint.textContent = 'No payment required. We\'ll reach out when it\'s your turn.';
             } else if (tier === 'starter') {
-                submitBtn.textContent = '🔒 Lock in Founding Starter';
+                submitBtn.textContent = '\u{1F512} Lock in Founding Starter';
                 finePrint.textContent = 'You\'ll be taken to a secure Stripe checkout. Card saved, NOT charged until launch. $29/mo locked for life.';
             } else if (tier === 'founding_pro') {
-                submitBtn.textContent = '🔒 Pre-book Founding Pro';
+                submitBtn.textContent = '\u{1F512} Pre-book Founding Pro';
                 finePrint.textContent = 'You\'ll be taken to a secure Stripe checkout. Card saved, NOT charged until launch. $49/mo for first year.';
             }
         }
-
-        // ─────────────────────────────────────────────────────────────
-        // SECURE Form Submission via Vercel Serverless Function
-        // No sensitive IDs exposed to the client!
-        // ─────────────────────────────────────────────────────────────
 
         // Capture UTM parameters from the URL on page load
         const urlParams = new URLSearchParams(window.location.search);
@@ -1175,7 +1155,7 @@
             const originalText = submitBtn.textContent;
             submitBtn.disabled = true;
 
-            // PAID TIERS → Redirect to Stripe Checkout (card capture, no charge)
+            // PAID TIERS: Redirect to Stripe Checkout (card capture, no charge)
             if (selectedTier === 'starter' || selectedTier === 'founding_pro') {
                 submitBtn.textContent = 'Redirecting to secure checkout...';
 
@@ -1211,7 +1191,7 @@
 
                     // Redirect to Stripe Checkout
                     window.location.href = stripeData.url;
-                    return; // Don't reset button — we're navigating away
+                    return;
 
                 } catch (err) {
                     console.error('Checkout error:', err);
@@ -1226,7 +1206,7 @@
                 return;
             }
 
-            // WAITLIST → Existing Google Sheets flow (no Stripe)
+            // WAITLIST: Existing Google Sheets flow (no Stripe)
             submitBtn.textContent = 'Joining...';
 
             try {
@@ -1278,20 +1258,18 @@
                     const data = await response.json();
                     const spotsTaken = Math.min(data.count || 0, 100);
                     const spotsRemaining = 100 - spotsTaken;
-                    spotsText.textContent = spotsRemaining > 0 
-                        ? `${spotsRemaining} of 100 spots remaining` 
+                    spotsText.textContent = spotsRemaining > 0
+                        ? spotsRemaining + ' of 100 spots remaining'
                         : 'All founding spots claimed!';
                     setTimeout(() => {
-                        spotsBar.style.width = `${(spotsTaken / 100) * 100}%`;
+                        spotsBar.style.width = (spotsTaken / 100) * 100 + '%';
                     }, 500);
                 }
             } catch (err) {
-                // Fallback — show static count if API is unavailable
                 spotsText.textContent = '100 spots remaining';
             }
         }
         updateSpotsCounter();
-
-        // Auto-highlight the Founding Pro option on load
-        document.addEventListener('DOMContentLoaded', () => {
-            const proOption = document.querySelector('[data-tier
+    </script>
+    </body>
+    </html>
