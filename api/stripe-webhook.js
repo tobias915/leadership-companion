@@ -75,7 +75,7 @@ module.exports = async (req, res) => {
     // Only process setup mode sessions (our card capture flow)
     if (session.mode === 'setup') {
       const email = session.customer_email || session.customer_details?.email || 'unknown';
-      const tier = session.metadata?.tier || 'unknown';
+      const tier = (session.metadata?.tier || 'unknown') + '_CONFIRMED';
       const utmSource = session.metadata?.utm_source || '';
       const utmMedium = session.metadata?.utm_medium || '';
       const utmCampaign = session.metadata?.utm_campaign || '';

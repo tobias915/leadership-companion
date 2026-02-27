@@ -1166,7 +1166,7 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
                             email,
-                            tier: selectedTier,
+                            tier: selectedTier + '_PENDING',
                             utmData,
                             pageUrl: window.location.href
                         })
