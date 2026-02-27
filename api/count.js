@@ -20,10 +20,4 @@ module.exports = async (req, res) => {
       return res.status(200).json({ count: 0 });
     }
   };
-  ```
-  
-  **Step 3 — Save, commit, push:**
-  ```
-  git add .
-  git commit -m "Fix: proper counter via Google Apps Script"
-  git push
+
