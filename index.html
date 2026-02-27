@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1086,7 +1087,7 @@
                 <div class="footer-links">
                     <a href="#privacy">Privacy Policy</a>
                     <a href="#terms">Terms of Service</a>
-                    <a href="mailto:hello@leadershipcompanion.com">Contact</a>
+                    <a href="/cdn-cgi/l/email-protection#cda5a8a1a1a28da1a8aca9a8bfbea5a4bdaea2a0bdaca3a4a2a3e3aea2a0">Contact</a>
                 </div>
             </div>
             <div class="footer-right">
@@ -1095,7 +1096,7 @@
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Nav scroll effect
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
@@ -1136,13 +1137,13 @@
 
             if (tier === 'waitlist') {
                 submitBtn.textContent = 'Join Waitlist';
-                finePrint.textContent = 'No payment required now. We\'ll reach out when it\'s your turn.';
+                finePrint.textContent = 'No payment required. We\'ll reach out when it\'s your turn.';
             } else if (tier === 'starter') {
-                submitBtn.textContent = 'Lock in Founding Starter';
-                finePrint.textContent = 'Card taken now, charged at launch. $29 AUD/month locked for life.';
+                submitBtn.textContent = '🔒 Lock in Founding Starter';
+                finePrint.textContent = 'You\'ll be taken to a secure Stripe checkout. Card saved, NOT charged until launch. $29/mo locked for life.';
             } else if (tier === 'founding_pro') {
-                submitBtn.textContent = 'Pre-book Founding Pro';
-                finePrint.textContent = 'Card taken now, charged at launch. $49 AUD/month for the first year, then $59.';
+                submitBtn.textContent = '🔒 Pre-book Founding Pro';
+                finePrint.textContent = 'You\'ll be taken to a secure Stripe checkout. Card saved, NOT charged until launch. $49/mo for first year.';
             }
         }
 
@@ -1173,15 +1174,65 @@
 
             const originalText = submitBtn.textContent;
             submitBtn.disabled = true;
+
+            // PAID TIERS → Redirect to Stripe Checkout (card capture, no charge)
+            if (selectedTier === 'starter' || selectedTier === 'founding_pro') {
+                submitBtn.textContent = 'Redirecting to secure checkout...';
+
+                try {
+                    // First, log the signup attempt to Google Sheets
+                    await fetch('/api/submit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            email,
+                            tier: selectedTier,
+                            utmData,
+                            pageUrl: window.location.href
+                        })
+                    });
+
+                    // Then redirect to Stripe Checkout
+                    const stripeResponse = await fetch('/api/create-checkout', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            email,
+                            tier: selectedTier,
+                            utmData
+                        })
+                    });
+
+                    const stripeData = await stripeResponse.json();
+
+                    if (!stripeResponse.ok) {
+                        throw new Error(stripeData.error || 'Checkout creation failed');
+                    }
+
+                    // Redirect to Stripe Checkout
+                    window.location.href = stripeData.url;
+                    return; // Don't reset button — we're navigating away
+
+                } catch (err) {
+                    console.error('Checkout error:', err);
+                    submitBtn.disabled = false;
+                    submitBtn.style.background = '#ef4444';
+                    submitBtn.textContent = 'Something went wrong — try again';
+                    setTimeout(() => {
+                        submitBtn.style.background = '';
+                        submitBtn.textContent = originalText;
+                    }, 3000);
+                }
+                return;
+            }
+
+            // WAITLIST → Existing Google Sheets flow (no Stripe)
             submitBtn.textContent = 'Joining...';
 
             try {
-                // Submit to our secure API endpoint
                 const response = await fetch('/api/submit', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         email,
                         tier: selectedTier,
@@ -1196,18 +1247,14 @@
                     throw new Error(data.error || 'Submission failed');
                 }
 
-                // Success!
+                // Show inline success for waitlist
                 formContainer.style.display = 'none';
+                document.querySelector('.founding-options').style.display = 'none';
                 successMessage.classList.add('show');
 
                 const successText = document.getElementById('successText');
-                if (selectedTier === 'waitlist') {
-                    successText.textContent = "We'll be in touch soon. Keep an eye on your inbox.";
-                } else if (selectedTier === 'starter') {
-                    successText.textContent = "You've locked in Founding Starter at $29/month for life. We'll be in touch before launch.";
-                } else if (selectedTier === 'founding_pro') {
-                    successText.textContent = "You've pre-booked Founding Pro at $49/month. We'll be in touch before launch.";
-                }
+                successText.textContent = "We'll be in touch soon. Keep an eye on your inbox.";
+
             } catch (err) {
                 console.error('Submission error:', err);
                 submitBtn.disabled = false;
@@ -1220,24 +1267,31 @@
             }
         });
 
-        // Spots counter animation
-        const spotsTaken = 0;
-        const spotsRemaining = 100 - spotsTaken;
+        // Spots counter — fetches signup count from API
         const spotsBar = document.getElementById('spotsBar');
         const spotsText = document.getElementById('spotsText');
 
-        spotsText.textContent = `${spotsRemaining} spots remaining`;
-        setTimeout(() => {
-            spotsBar.style.width = `${(spotsTaken / 100) * 100}%`;
-        }, 500);
+        async function updateSpotsCounter() {
+            try {
+                const response = await fetch('/api/count');
+                if (response.ok) {
+                    const data = await response.json();
+                    const spotsTaken = Math.min(data.count || 0, 100);
+                    const spotsRemaining = 100 - spotsTaken;
+                    spotsText.textContent = spotsRemaining > 0 
+                        ? `${spotsRemaining} of 100 spots remaining` 
+                        : 'All founding spots claimed!';
+                    setTimeout(() => {
+                        spotsBar.style.width = `${(spotsTaken / 100) * 100}%`;
+                    }, 500);
+                }
+            } catch (err) {
+                // Fallback — show static count if API is unavailable
+                spotsText.textContent = '100 spots remaining';
+            }
+        }
+        updateSpotsCounter();
 
         // Auto-highlight the Founding Pro option on load
         document.addEventListener('DOMContentLoaded', () => {
-            const proOption = document.querySelector('[data-tier="founding_pro"]');
-            if (proOption) {
-                selectTier(proOption, 'founding_pro');
-            }
-        });
-    </script>
-</body>
-</html>
+            const proOption = document.querySelector('[data-tier
