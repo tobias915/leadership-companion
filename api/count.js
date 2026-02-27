@@ -1,13 +1,11 @@
 // /api/count.js
-// Fetches signup count from Google Apps Script
-
 module.exports = async (req, res) => {
     if (req.method !== 'GET') {
       res.setHeader('Allow', 'GET');
       return res.status(405).json({ error: 'Method not allowed' });
     }
   
-    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
   
     try {
       const response = await fetch(
