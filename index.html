@@ -1218,7 +1218,7 @@
                 <div class="footer-links">
                     <a href="Leadership_Companion_Global_Data_Privacy_Policy_26022026.pdf" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
                     <a href="Leadership_Companion_Terms_of_Service_26022026.pdf" target="_blank" rel="noopener noreferrer">Terms of Service</a>
-                    <a href="/cdn-cgi/l/email-protection#cda5a8a1a1a28da1a8aca9a8bfbea5a4bdaea2a0bdaca3a4a2a3e3aea2a0">Contact</a>
+                    <a href="#" id="contactLink">Contact</a>
                 </div>
             </div>
             <div class="footer-right">
@@ -1406,6 +1406,14 @@
             }
         }
         updateSpotsCounter();
+
+        // Contact email (obfuscated from scrapers)
+        const contactLink = document.getElementById('contactLink');
+        if (contactLink) {
+            const user = 'hello';
+            const domain = 'leadershipcompanion.com.au';
+            contactLink.href = 'mailto:' + user + '@' + domain;
+        }
     </script>
     </body>
     </html>
