@@ -1054,7 +1054,7 @@
                 <div class="cta-option" data-tier="starter" onclick="selectTier(this, 'starter')">
                     <div class="option-label">Founding Starter</div>
                     <div class="option-price">$29/mo</div>
-                    <div class="option-desc">Locked for life</div>
+                    <div class="option-desc">Locked for your first year</div>
                 </div>
                 <div class="cta-option" data-tier="founding_pro" onclick="selectTier(this, 'founding_pro')">
                     <div class="option-label">Founding Pro</div>
@@ -1138,10 +1138,10 @@
                 finePrint.textContent = 'No payment required. We\'ll reach out when it\'s your turn.';
             } else if (tier === 'starter') {
                 submitBtn.textContent = '\u{1F512} Lock in Founding Starter';
-                finePrint.textContent = 'You\'ll be taken to a secure Stripe checkout. Card saved, NOT charged until launch. $29/mo locked for life.';
+                finePrint.textContent = 'You\'ll be taken to a secure Stripe checkout. Card saved, NOT charged until launch. $29/mo locked for your first year.';
             } else if (tier === 'founding_pro') {
                 submitBtn.textContent = '\u{1F512} Pre-book Founding Pro';
-                finePrint.textContent = 'You\'ll be taken to a secure Stripe checkout. Card saved, NOT charged until launch. $49/mo for first year.';
+                finePrint.textContent = 'You\'ll be taken to a secure Stripe checkout. Card saved, NOT charged until launch. $49/mo locked for your first year.';
             }
         }
 
