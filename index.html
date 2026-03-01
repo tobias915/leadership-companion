@@ -114,6 +114,30 @@
                     "text": "Founding member pricing starts at AUD $29 per month for the Starter plan, with the Pro plan (including voice and advanced features) at AUD $49 per month for the first year. These are locked-in rates for early members."
                 }
             }
+            {
+                "@type": "Question",
+                "name": "Is Leadership Companion available in Australia?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Leadership Companion is built in Australia and prices are in AUD. It is available to leaders and business owners worldwide."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I talk to Leadership Companion by voice?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. The Pro plan includes voice conversation support so you can speak naturally with your AI advisor, just like a phone call with a trusted colleague."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does Leadership Companion replace a business coach?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Leadership Companion complements human coaching. It is available 24/7 for everyday decisions, follows up between sessions, and costs a fraction of traditional coaching. Many users pair it with periodic human coaching for best results."
+                }
+            }
         ]
     }
     </script>
@@ -1032,6 +1056,186 @@
                 gap: 12px;
             }
         }
+
+
+/* ===== SEO DEEP CONTENT ===== */
+.deep-content {
+    padding: 100px 24px;
+    background: var(--warm-50);
+    border-top: 1px solid var(--slate-100);
+    position: relative;
+    overflow: hidden;
+}
+
+.deep-content::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(75, 167, 245, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.deep-content-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+}
+
+.deep-content-lead {
+    position: sticky;
+    top: 120px;
+}
+
+.deep-content-lead h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    color: var(--slate-900);
+    margin-bottom: 20px;
+}
+
+.deep-content-lead h2 em {
+    font-style: italic;
+    color: var(--blue-600);
+}
+
+.deep-content-lead-text {
+    font-size: 1.05rem;
+    color: var(--slate-500);
+    line-height: 1.8;
+    margin-bottom: 32px;
+}
+
+.deep-content-highlight {
+    padding: 24px 28px;
+    background: var(--blue-50);
+    border-left: 3px solid var(--blue-400);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--blue-800);
+    line-height: 1.6;
+}
+
+.deep-content-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.deep-block {
+    padding: 32px;
+    background: white;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--slate-200);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.deep-block:hover {
+    border-color: var(--blue-200);
+    box-shadow: 0 8px 32px rgba(42, 111, 196, 0.08);
+    transform: translateY(-2px);
+}
+
+.deep-block-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.deep-block-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--blue-50);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.deep-block-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--blue-500);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.deep-block h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--slate-900);
+    letter-spacing: -0.01em;
+}
+
+.deep-block p {
+    font-size: 0.925rem;
+    color: var(--slate-500);
+    line-height: 1.7;
+}
+
+.deep-block p + p {
+    margin-top: 12px;
+}
+
+.deep-audience-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.deep-audience-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: var(--blue-50);
+    border: 1px solid var(--blue-100);
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--blue-700);
+}
+
+.deep-audience-tag svg {
+    width: 12px;
+    height: 12px;
+    stroke: var(--blue-400);
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .deep-content-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .deep-content-lead {
+        position: static;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -1070,6 +1274,88 @@
         </div>
     </section>
 
+    <section class="deep-content">
+        <div class="deep-content-inner">
+            <div class="deep-content-lead reveal">
+                <div class="section-label">Why It Exists</div>
+                <h2>Built for leaders who make decisions <em>alone</em></h2>
+                <p class="deep-content-lead-text">
+                    Running a business means making hundreds of decisions with incomplete information. Should you hire that operations manager? Is it time to renegotiate your lease? How do you handle that difficult conversation with your underperforming sales lead?
+                </p>
+                <div class="deep-content-highlight">
+                    "The advisor that never forgets and never bills by the hour."
+                </div>
+            </div>
+    
+            <div class="deep-content-blocks">
+                <div class="deep-block reveal">
+                    <div class="deep-block-header">
+                        <div class="deep-block-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <h3>Context that compounds</h3>
+                    </div>
+                    <p>Leadership Companion is an AI business advisor that understands your specific context. Unlike ChatGPT or generic AI tools, it builds a longitudinal understanding of your business, your team, your cash position, and your goals. Every conversation makes it smarter about you.</p>
+                </div>
+    
+                <div class="deep-block reveal">
+                    <div class="deep-block-header">
+                        <div class="deep-block-icon">
+                            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        </div>
+                        <h3>How it works</h3>
+                    </div>
+                    <p>Talk to your companion through text or voice, just like messaging a trusted advisor. Ask about a pricing decision, a people problem, or a strategic pivot. Leadership Companion draws on behavioural science and proven business frameworks to help you think clearly, not just answer quickly.</p>
+                    <p>Between sessions, it works for you. It tracks your decisions, follows up on commitments you have made, and prepares insights before your next conversation.</p>
+                </div>
+    
+                <div class="deep-block reveal">
+                    <div class="deep-block-header">
+                        <div class="deep-block-icon">
+                            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <h3>Who it is for</h3>
+                    </div>
+                    <p>Business owners, founders, managing directors, and senior leaders who want a thinking partner available around the clock. Whether you are running a trade business, a professional services firm, a SaaS startup, or a retail operation, Leadership Companion adapts to your industry and context.</p>
+                    <div class="deep-audience-tags">
+                        <span class="deep-audience-tag">
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            Business Owners
+                        </span>
+                        <span class="deep-audience-tag">
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            Founders
+                        </span>
+                        <span class="deep-audience-tag">
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            Managing Directors
+                        </span>
+                        <span class="deep-audience-tag">
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            Senior Leaders
+                        </span>
+                        <span class="deep-audience-tag">
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            Trade Businesses
+                        </span>
+                        <span class="deep-audience-tag">
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            Professional Services
+                        </span>
+                        <span class="deep-audience-tag">
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            SaaS Startups
+                        </span>
+                        <span class="deep-audience-tag">
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            Retail
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
       <!-- FEATURES -->
       <section class="features" id="how-it-works">
         <div class="features-inner">
@@ -1125,17 +1411,7 @@
         </div>
     </section>
 
-    <section class="seo-content" style="padding: 80px 24px; max-width: 800px; margin: 0 auto;">
-        <h2>Built for leaders who make decisions alone</h2>
-        <p>Running a business means making hundreds of decisions with incomplete information. Should you hire that operations manager? Is it time to renegotiate your lease? How do you have that difficult conversation with your underperforming sales lead?</p>
-        <p>Leadership Companion is an AI business advisor that understands your specific context. Unlike ChatGPT or generic AI tools, it builds a longitudinal understanding of your business, your team, your cash position, and your goals. Every conversation makes it smarter about you.</p>
-        <h3>How it works</h3>
-        <p>Talk to your companion through text or voice, just like messaging a trusted advisor. Ask about a pricing decision, a people problem, or a strategic pivot. Leadership Companion draws on behavioural science and proven business frameworks to help you think clearly, not just answer quickly.</p>
-        <p>Between sessions, it works for you. It tracks your decisions, follows up on commitments you have made, and prepares insights before your next conversation. It is the advisor that never forgets and never bills by the hour.</p>
-        <h3>Who it is for</h3>
-        <p>Business owners, founders, managing directors, and senior leaders who want a thinking partner available around the clock. Whether you are running a trade business, a professional services firm, a SaaS startup, or a retail operation, Leadership Companion adapts to your industry and context.</p>
-    </section>
-
+ 
     <!-- MODULES -->
     <section id="modules">
         <div class="section-header">
