@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            width: 1200px;
+            height: 630px;
+            overflow: hidden;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .og-card {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(145deg, #fffbf5 0%, #f0f7ff 40%, #e0efff 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0 80px;
+            overflow: hidden;
+        }
+
+        /* Subtle radial glow top-right */
+        .og-card::before {
+            content: '';
+            position: absolute;
+            top: -120px;
+            right: -80px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(75, 167, 245, 0.12) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        /* Bottom-left warm glow */
+        .og-card::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(245, 166, 35, 0.08) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        /* Subtle grid pattern */
+        .grid-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(rgba(42, 111, 196, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(42, 111, 196, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            max-width: 680px;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 36px;
+        }
+
+        .logo-mark {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, #4ba7f5, #2a6fc4);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(42, 111, 196, 0.3);
+        }
+
+        .logo-mark svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .logo-text {
+            font-family: 'Fraunces', Georgia, serif;
+            font-weight: 500;
+            font-size: 1.55rem;
+            color: #1d4b83;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-weight: 400;
+            font-size: 3.1rem;
+            line-height: 1.15;
+            color: #1e293b;
+            letter-spacing: -0.03em;
+            margin-bottom: 22px;
+        }
+
+        h1 em {
+            font-style: italic;
+            color: #2a6fc4;
+        }
+
+        .subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #64748b;
+            line-height: 1.6;
+            max-width: 560px;
+        }
+
+        /* Right side decorative element */
+        .deco-right {
+            position: absolute;
+            right: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .deco-pill {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(42, 111, 196, 0.1);
+            border-radius: 16px;
+            padding: 16px 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            min-width: 300px;
+        }
+
+        .deco-pill-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .deco-pill-icon.blue { background: rgba(75, 167, 245, 0.12); }
+        .deco-pill-icon.green { background: rgba(34, 197, 94, 0.12); }
+        .deco-pill-icon.amber { background: rgba(245, 166, 35, 0.12); }
+        .deco-pill-icon.indigo { background: rgba(99, 102, 241, 0.12); }
+
+        .deco-pill-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .deco-pill-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .deco-pill-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #1e293b;
+        }
+
+        .deco-pill-desc {
+            font-size: 0.78rem;
+            color: #94a3b8;
+            margin-top: 1px;
+        }
+
+        /* Domain badge */
+        .domain-badge {
+            position: absolute;
+            bottom: 40px;
+            left: 80px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #94a3b8;
+        }
+
+        .domain-badge .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+        .domain-badge span {
+            color: #64748b;
+        }
+
+        /* Built in Aus badge */
+        .aus-badge {
+            position: absolute;
+            bottom: 40px;
+            right: 60px;
+            z-index: 2;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="og-card">
+        <div class="grid-pattern"></div>
+
+        <div class="content">
+            <div class="logo-row">
+                <div class="logo-mark">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Leadership Companion</span>
+            </div>
+
+            <h1>The thinking partner every business owner <em>deserves</em></h1>
+            <p class="subtitle">AI-powered decision support that remembers your business, follows up on your commitments, and gets smarter about you over time.</p>
+        </div>
+
+        <div class="deco-right">
+            <div class="deco-pill">
+                <div class="deco-pill-icon blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#4ba7f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                </div>
+                <div class="deco-pill-text">
+                    <span class="deco-pill-title">Always Available</span>
+                    <span class="deco-pill-desc">4am or 4pm — it's there</span>
+                </div>
+            </div>
+
+            <div class="deco-pill">
+                <div class="deco-pill-icon green">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                    </svg>
+                </div>
+                <div class="deco-pill-text">
+                    <span class="deco-pill-title">22 Knowledge Bricks</span>
+                    <span class="deco-pill-desc">Deep, domain-specific guidance</span>
+                </div>
+            </div>
+
+            <div class="deco-pill">
+                <div class="deco-pill-icon amber">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                    </svg>
+                </div>
+                <div class="deco-pill-text">
+                    <span class="deco-pill-title">Proactive Follow-ups</span>
+                    <span class="deco-pill-desc">Nudges, reminders, check-ins</span>
+                </div>
+            </div>
+
+            <div class="deco-pill">
+                <div class="deco-pill-icon indigo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+                <div class="deco-pill-text">
+                    <span class="deco-pill-title">4-Layer Memory</span>
+                    <span class="deco-pill-desc">Gets smarter about you over time</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="domain-badge">
+            <div class="dot"></div>
+            <span>leadershipcompanion.co</span>
+        </div>
+
+        <div class="aus-badge">Built in Australia 🇦🇺</div>
+    </div>
+</body>
+</html>
