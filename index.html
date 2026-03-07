@@ -160,7 +160,7 @@
                 "name": "What industries does it work for?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Leadership Companion adapts to your specific context regardless of industry. It works with trade business owners, professional services principals, SaaS founders, retail operators, agency owners, consultants, and senior leaders in larger organisations. If you lead people and carry decisions, it is built for you."
+                    "text": "Leadership Companion adapts to your specific context regardless of industry. It works with business owners, professional services principals, founders, retail operators, agency owners, consultants, leaders wanting to grow, and senior leaders in larger organisations. If you lead people and carry decisions, it is built for you."
                 }
             },
             {
@@ -177,6 +177,14 @@
                 "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "Yes. The Pro plan includes voice conversation so you can speak naturally with your companion. Think of it like calling someone who genuinely knows your business, is always available, and gives you their full attention."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is it true that Leadership Companion plants trees for their users every month?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. We plant a tree per month for those on the standard plan and two trees per month for those on the Pro plan. AI consumes energy and this is our first step to compensate for that usage."
                 }
             },
             {
@@ -1579,7 +1587,7 @@
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        We will plant a tree to help the planet  
+                        We will plant a tree a month for you to help the planet  
                     </li>
                 </ul>
                 <a href="#founding-members" class="pricing-cta" onclick="selectTier(document.querySelector('[data-tier=&quot;starter&quot;]'), 'starter')">Get Started</a>
@@ -1614,7 +1622,7 @@
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        We will plant two trees to help the planet  
+                        We will plant two trees per month for you to help the planet  
                     </li>
                 </ul>
                 <a href="#founding-members" class="pricing-cta" onclick="selectTier(document.querySelector('[data-tier=&quot;founding_pro&quot;]'), 'founding_pro')">Get Started</a>
@@ -1638,11 +1646,7 @@
             </div>
 
             <div class="founding-options">
-                <div class="cta-option" data-tier="waitlist" onclick="selectTier(this, 'waitlist')">
-                    <div class="option-label">Waitlist</div>
-                    <div class="option-price">Free</div>
-                    <div class="option-desc">Get notified at launch</div>
-                </div>
+
                 <div class="cta-option" data-tier="starter" onclick="selectTier(this, 'starter')">
                     <div class="option-label">Founding Starter</div>
                     <div class="option-price">$29/mo</div>
@@ -1653,7 +1657,11 @@
                     <div class="option-price">$49/mo</div>
                     <div class="option-desc">Locked for your first year</div>
                 </div>
-            </div>
+                <div class="cta-option" data-tier="waitlist" onclick="selectTier(this, 'waitlist')">
+                    <div class="option-label">Waitlist</div>
+                    <div class="option-price">Free</div>
+                    <div class="option-desc">Get notified at launch</div>
+                </div>            </div>
 
             <div id="formContainer">
                 <form class="founding-form" id="signupForm">
