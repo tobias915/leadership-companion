@@ -1366,6 +1366,25 @@
 }
 
     </style>
+<script>
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var ref = params.get('ref');
+  if (ref && ref.startsWith('LC-')) {
+    try { localStorage.setItem('referralCode', ref); } catch(e) {}
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    var stored;
+    try { stored = localStorage.getItem('referralCode'); } catch(e) {}
+    if (!stored) return;
+    document.querySelectorAll('a[href*="app.leadershipcompanion"]').forEach(function(a) {
+      var url = new URL(a.href);
+      url.searchParams.set('ref', stored);
+      a.href = url.toString();
+    });
+  });
+})();
+</script>
 </head>
 <body>
     <!-- NAV -->
