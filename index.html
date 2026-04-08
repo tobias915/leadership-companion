@@ -1398,7 +1398,7 @@
                 <a href="#how-it-works" class="nav-link">How It Works</a>
                 <a href="#pricing" class="nav-link">Pricing</a>
                 <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#founding-members" class="nav-cta">Join Waitlist</a>
+                <a href="https://app.leadershipcompanion.co" class="nav-cta">Sign In</a>
             </div>
         </div>
     </nav>
@@ -1412,7 +1412,7 @@
             </div>
             <h1>The AI advisor that remembers your business. Always Available.</h1>
             <p class="hero-lead">Make better decisions, manage cash flow, handle tough conversations, and grow as a leader, all through natural conversation.</p>
-            <a href="#founding-members" class="hero-cta">
+            <a href="https://app.leadershipcompanion.co?tier=starter" class="hero-cta">
                 Get Early Access
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
@@ -1681,7 +1681,7 @@
                         We will plant a tree a month for you to help the planet  
                     </li>
                 </ul>
-                <a href="#founding-members" class="pricing-cta" onclick="selectTier(document.querySelector('[data-tier=&quot;starter&quot;]'), 'starter')">Get Started</a>
+                <a href="https://app.leadershipcompanion.co?tier=starter" class="pricing-cta">Get Started</a>
             </div>
             <div class="pricing-card featured">
                 <div class="pricing-badge">Most Popular</div>
@@ -1716,7 +1716,7 @@
                         We will plant two trees per month for you to help the planet  
                     </li>
                 </ul>
-                <a href="#founding-members" class="pricing-cta" onclick="selectTier(document.querySelector('[data-tier=&quot;founding_pro&quot;]'), 'founding_pro')">Get Started</a>
+                <a href="https://app.leadershipcompanion.co?tier=founding_pro" class="pricing-cta">Lock in Founding Price</a>
             </div>
         </div>
     </section>
@@ -1797,53 +1797,18 @@
             <div class="founding-badge">Founding Members Only</div>
             <h2>Lock in founding member pricing</h2>
             <p>Join the first 100 leaders and secure exclusive pricing and first access to the product.</p>
-            
-            <div class="founding-spots">
-                <div class="spots-label">Limited spots available</div>
-                <div class="spots-bar-container">
-                    <div class="spots-bar" id="spotsBar"></div>
-                </div>
-                <div class="spots-text" id="spotsText">100 spots remaining</div>
-            </div>
 
             <div class="founding-options">
-
-                <div class="cta-option" data-tier="starter" onclick="selectTier(this, 'starter')">
+                <a href="https://app.leadershipcompanion.co?tier=starter" class="cta-option" data-tier="starter">
                     <div class="option-label">Founding Starter</div>
                     <div class="option-price">$29/mo</div>
                     <div class="option-desc">Locked for your first year</div>
-                </div>
-                <div class="cta-option" data-tier="founding_pro" onclick="selectTier(this, 'founding_pro')">
+                </a>
+                <a href="https://app.leadershipcompanion.co?tier=founding_pro" class="cta-option" data-tier="founding_pro">
                     <div class="option-label">Founding Pro</div>
                     <div class="option-price">$49/mo</div>
                     <div class="option-desc">Locked for your first year</div>
-                </div>
-                <div class="cta-option" data-tier="waitlist" onclick="selectTier(this, 'waitlist')">
-                    <div class="option-label">Waitlist</div>
-                    <div class="option-price">Free</div>
-                    <div class="option-desc">Get notified at launch</div>
-                </div>            </div>
-
-            <div id="formContainer">
-                <form class="founding-form" id="signupForm">
-                    <input 
-                        type="email" 
-                        id="emailInput" 
-                        class="founding-input" 
-                        placeholder="Enter your email" 
-                        required
-                    >
-                    <button type="submit" id="submitBtn">Join Waitlist</button>
-                </form>
-                <p class="founding-fine" id="finePrint">No payment required now. We'll reach out when it's your turn to get started.</p>
-            </div>
-
-            <div class="success-message" id="successMessage">
-                <div class="success-icon">
-                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                </div>
-                <h3>You're on the list</h3>
-                <p id="successText">We'll be in touch soon. Keep an eye on your inbox.</p>
+                </a>
             </div>
         </div>
     </section>
@@ -1875,179 +1840,6 @@
         window.addEventListener('scroll', () => {
             nav.classList.toggle('scrolled', window.scrollY > 40);
         });
-
-        // Tier selection
-        let selectedTier = 'waitlist';
-
-        function selectTier(el, tier) {
-            selectedTier = tier;
-            // Highlight selected option
-            document.querySelectorAll('.cta-option').forEach(opt => {
-                opt.style.borderColor = 'rgba(255, 255, 255, 0.15)';
-                opt.style.background = 'rgba(255, 255, 255, 0.06)';
-            });
-            el.style.borderColor = 'rgba(255, 255, 255, 0.5)';
-            el.style.background = 'rgba(255, 255, 255, 0.15)';
-
-            // Update button and fine print
-            const submitBtn = document.getElementById('submitBtn');
-            const finePrint = document.getElementById('finePrint');
-
-            if (tier === 'waitlist') {
-                submitBtn.textContent = 'Join Waitlist';
-                finePrint.textContent = 'No payment required. We\'ll reach out when it\'s your turn.';
-            } else if (tier === 'starter') {
-                submitBtn.textContent = '\u{1F512} Lock in Founding Starter';
-                finePrint.textContent = 'You\'ll be taken to a secure Stripe checkout. Card saved, NOT charged until launch. $29/mo locked for your first year.';
-            } else if (tier === 'founding_pro') {
-                submitBtn.textContent = '\u{1F512} Pre-book Founding Pro';
-                finePrint.textContent = 'You\'ll be taken to a secure Stripe checkout. Card saved, NOT charged until launch. $49/mo locked for your first year.';
-            }
-
-            // Focus the email input after a short delay (allows scroll to complete)
-            setTimeout(() => {
-                document.getElementById('emailInput').focus();
-            }, 400);
-        }
-
-        // Capture UTM parameters from the URL on page load
-        const urlParams = new URLSearchParams(window.location.search);
-        const utmData = {
-            utm_source: urlParams.get('utm_source') || '',
-            utm_medium: urlParams.get('utm_medium') || '',
-            utm_campaign: urlParams.get('utm_campaign') || '',
-            utm_content: urlParams.get('utm_content') || ''
-        };
-
-        const form = document.getElementById('signupForm');
-        const formContainer = document.getElementById('formContainer');
-        const successMessage = document.getElementById('successMessage');
-        const submitBtn = document.getElementById('submitBtn');
-        const emailInput = document.getElementById('emailInput');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = emailInput.value.trim();
-            if (!email) return;
-
-            const originalText = submitBtn.textContent;
-            submitBtn.disabled = true;
-
-            // PAID TIERS: Redirect to Stripe Checkout (card capture, no charge)
-            if (selectedTier === 'starter' || selectedTier === 'founding_pro') {
-                submitBtn.textContent = 'Redirecting to secure checkout...';
-
-                try {
-                    // First, log the signup attempt to Google Sheets
-                    await fetch('/api/submit', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            email,
-                            tier: selectedTier + '_PENDING',
-                            utmData,
-                            pageUrl: window.location.href
-                        })
-                    });
-
-                    // Then redirect to Stripe Checkout
-                    const stripeResponse = await fetch('/api/create-checkout', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            email,
-                            tier: selectedTier,
-                            utmData
-                        })
-                    });
-
-                    const stripeData = await stripeResponse.json();
-
-                    if (!stripeResponse.ok) {
-                        throw new Error(stripeData.error || 'Checkout creation failed');
-                    }
-
-                    // Redirect to Stripe Checkout
-                    window.location.href = stripeData.url;
-                    return;
-
-                } catch (err) {
-                    console.error('Checkout error:', err);
-                    submitBtn.disabled = false;
-                    submitBtn.style.background = '#ef4444';
-                    submitBtn.textContent = 'Something went wrong. Try again';
-                    setTimeout(() => {
-                        submitBtn.style.background = '';
-                        submitBtn.textContent = originalText;
-                    }, 3000);
-                }
-                return;
-            }
-
-            // WAITLIST: Existing Google Sheets flow (no Stripe)
-            submitBtn.textContent = 'Joining...';
-
-            try {
-                const response = await fetch('/api/submit', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        email,
-                        tier: selectedTier,
-                        utmData,
-                        pageUrl: window.location.href
-                    })
-                });
-
-                const data = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(data.error || 'Submission failed');
-                }
-
-                // Show inline success for waitlist
-                formContainer.style.display = 'none';
-                document.querySelector('.founding-options').style.display = 'none';
-                successMessage.classList.add('show');
-
-                const successText = document.getElementById('successText');
-                successText.textContent = "We'll be in touch soon. Keep an eye on your inbox.";
-
-            } catch (err) {
-                console.error('Submission error:', err);
-                submitBtn.disabled = false;
-                submitBtn.style.background = '#ef4444';
-                submitBtn.textContent = 'Something went wrong. Try again';
-                setTimeout(() => {
-                    submitBtn.style.background = '';
-                    submitBtn.textContent = originalText;
-                }, 3000);
-            }
-        });
-
-        // Spots counter — fetches signup count from API
-        const spotsBar = document.getElementById('spotsBar');
-        const spotsText = document.getElementById('spotsText');
-
-        async function updateSpotsCounter() {
-            try {
-                const response = await fetch('/api/count');
-                if (response.ok) {
-                    const data = await response.json();
-                    const spotsTaken = Math.min(data.count || 0, 100);
-                    const spotsRemaining = 100 - spotsTaken;
-                    spotsText.textContent = spotsRemaining > 0
-                        ? spotsRemaining + ' of 100 spots remaining'
-                        : 'All founding spots claimed!';
-                    setTimeout(() => {
-                        spotsBar.style.width = (spotsTaken / 100) * 100 + '%';
-                    }, 500);
-                }
-            } catch (err) {
-                spotsText.textContent = '100 spots remaining';
-            }
-        }
-        updateSpotsCounter();
 
         // FAQ accordion
         document.querySelectorAll('.faq-question').forEach(btn => {
