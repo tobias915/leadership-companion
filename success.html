@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome, Founding Member — Leadership Companion</title>
+    <title>Welcome to Leadership Companion</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -178,7 +178,7 @@
             <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
 
-        <div class="tier-badge" id="tierBadge">Founding Member</div>
+        <div class="tier-badge" id="tierBadge">Welcome</div>
 
         <h1 id="headline">You're in.</h1>
 
@@ -189,8 +189,7 @@
         <div class="what-next">
             <h3>What happens next</h3>
             <p><strong>Your card will not be charged today.</strong> We've securely saved your payment method with Stripe.</p>
-            <p>Before we launch, you'll receive an email with early access to Leadership Companion. You'll be among the very first to use it.</p>
-            <p>As a founding member, you'll also have a direct line to the founding team to shape the product.</p>
+            <p>Before we launch, you'll receive an email with access details for Leadership Companion. You'll be among the very first to use it.</p>
         </div>
 
         <a href="/" class="back-link">
@@ -211,18 +210,17 @@
         const successText = document.getElementById('successText');
 
         if (tier === 'starter') {
-            tierBadge.textContent = 'Founding Starter';
-            headline.textContent = "You've locked in $29/month for your first year.";
-            successText.textContent = "Welcome to the founding crew! Your Founding Starter rate of $29 AUD/month is now locked in for your first year.";
-        } else if (tier === 'founding_pro') {
-            tierBadge.textContent = 'Founding Pro';
-            headline.textContent = "You've locked in $49/month for your first year.";
-            successText.textContent = "Welcome to the founding crew! Your Founding Pro rate of $49 AUD/month is locked in for your first year (normally $59). You'll get access to every feature we build — voice input, file uploads, quarterly leadership reviews, and more.";
+            tierBadge.textContent = 'Starter';
+            headline.textContent = "You're on the Starter plan at $29/month.";
+            successText.textContent = "Welcome to Leadership Companion. Your Starter plan at $29 AUD/month is confirmed.";
+        } else if (tier === 'pro') {
+            tierBadge.textContent = 'Pro';
+            headline.textContent = "You're on the Pro plan at $49/month.";
+            successText.textContent = "Welcome to Leadership Companion. Your Pro plan at $49 AUD/month is confirmed. You'll get access to every feature, including voice input, file uploads, and quarterly leadership reviews.";
         } else {
-            // Fallback for direct visits
-            tierBadge.textContent = 'Founding Member';
+            tierBadge.textContent = 'Welcome';
             headline.textContent = "You're in.";
-            successText.textContent = "Welcome to the founding crew! Your founding rate is now locked in. We'll be in touch before launch with early access details.";
+            successText.textContent = "Welcome to Leadership Companion. We'll be in touch before launch with access details.";
         }
     </script>
 </body>
