@@ -428,6 +428,20 @@
             box-shadow: 0 4px 12px rgba(42, 111, 196, 0.3);
         }
 
+        /* Ghost variant. Padding is 2px tighter so the border keeps the
+           same overall height and width as the solid button. */
+        .nav-cta-ghost {
+            background: transparent;
+            color: var(--blue-600);
+            border: 2px solid var(--blue-600);
+            padding: 8px 22px;
+        }
+
+        .nav-cta-ghost:hover {
+            background: var(--blue-600);
+            color: white;
+        }
+
         /* ===== PAGE HEADER ===== */
         .page-header {
             text-align: center;
@@ -626,11 +640,25 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .nav-links {
-                gap: 16px;
+                gap: 10px;
             }
 
             .nav-link {
                 display: none;
+            }
+
+            /* Keeps the logo on one line once both nav buttons are showing */
+            .logo-text {
+                font-size: 0.95rem;
+            }
+
+            /* Both buttons stay visible on mobile, so tighten padding instead */
+            .nav-cta {
+                padding: 9px 14px;
+            }
+
+            .nav-cta-ghost {
+                padding: 7px 12px;
             }
 
             .page-header {
@@ -864,7 +892,8 @@
                 <a href="/#how-it-works" class="nav-link">How It Works</a>
                 <a href="/#pricing" class="nav-link">Pricing</a>
                 <a href="/faq" class="nav-link active">FAQ</a>
-                <a href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F" class="nav-cta">Get Started</a>
+                <a href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F" class="nav-cta nav-cta-ghost">Sign Up</a>
+                <a href="https://app.leadershipcompanion.co" class="nav-cta">Log In</a>
             </div>
         </div>
     </nav>
@@ -1280,7 +1309,7 @@
             <button type="button" class="team-modal-close" id="teamModalClose" aria-label="Close">&times;</button>
             <div id="teamModalBody">
                 <h2 id="teamModalTitle">Tell us about your team</h2>
-                <p class="team-modal-intro">A few details and one of the founders will come back to you within one business day.</p>
+                <p class="team-modal-intro">A few details and one of our team will come back to you within one business day.</p>
                 <form id="teamEnquiryForm">
                     <div class="team-field">
                         <label for="teamName">Your name</label>
@@ -1291,22 +1320,27 @@
                         <input type="email" id="teamEmail" name="email" required placeholder="you@company.com.au" autocomplete="email">
                     </div>
                     <div class="team-field">
+                        <label for="teamPhone">Phone number</label>
+                        <input type="tel" id="teamPhone" name="phone" placeholder="+61 4xx xxx xxx" maxlength="30" autocomplete="tel">
+                    </div>
+                    <div class="team-field">
                         <label for="teamCompany">Company</label>
                         <input type="text" id="teamCompany" name="company" required autocomplete="organization">
                     </div>
                     <div class="team-field">
                         <label for="teamSize">How many leaders?</label>
                         <select id="teamSize" name="teamSize" required>
-                            <option value="">Please choose</option>
-                            <option value="2 to 5">2 to 5</option>
-                            <option value="6 to 10">6 to 10</option>
-                            <option value="11 to 25">11 to 25</option>
-                            <option value="26 or more">26 or more</option>
+                            <option value="" disabled selected>Please choose</option>
+                            <option value="1 to 5">1 to 5</option>
+                            <option value="6 to 15">6 to 15</option>
+                            <option value="16 to 30">16 to 30</option>
+                            <option value="31 to 100">31 to 100</option>
+                            <option value="100+">100+</option>
                         </select>
                     </div>
                     <div class="team-field">
                         <label for="teamNotes">Anything we should know?</label>
-                        <textarea id="teamNotes" name="notes" placeholder="Timing, questions, what is prompting this"></textarea>
+                        <textarea id="teamNotes" name="notes" placeholder="Timing, questions, what you are looking for"></textarea>
                     </div>
                     <div class="team-hp" aria-hidden="true">
                         <label for="teamWebsite">Website</label>
@@ -1315,7 +1349,7 @@
                     <input type="hidden" id="teamStartedAt" name="startedAt" value="">
                     <p class="team-modal-error" id="teamModalError" role="status" aria-live="polite"></p>
                     <button type="submit" class="team-submit" id="teamSubmit">Send enquiry</button>
-                    <p class="team-modal-fine">We only use these details to respond to your enquiry. See our <a href="/Leadership_Companion_Global_Data_Privacy_Policy_26022026.pdf" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</p>
+                    <p class="team-modal-fine">We only use these details to respond to your enquiry.<br>See our <a href="/Leadership_Companion_Global_Data_Privacy_Policy_26022026.pdf" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</p>
                 </form>
             </div>
         </div>
@@ -1391,7 +1425,7 @@
                 heading.setAttribute('tabindex', '-1');
                 heading.textContent = 'Thanks, we have it.';
                 var message = document.createElement('p');
-                message.textContent = 'One of the founders will be in touch within one business day.';
+                message.textContent = 'One of our team will be in touch within one business day.';
                 wrap.appendChild(heading);
                 wrap.appendChild(message);
                 modalBody.appendChild(wrap);
@@ -1410,6 +1444,7 @@
                     body: JSON.stringify({
                         name: document.getElementById('teamName').value,
                         email: document.getElementById('teamEmail').value,
+                        phone: document.getElementById('teamPhone').value,
                         company: document.getElementById('teamCompany').value,
                         teamSize: document.getElementById('teamSize').value,
                         notes: document.getElementById('teamNotes').value,

@@ -5,7 +5,7 @@ import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 
 const MAX_BODY_BYTES = 10 * 1024;
 const MIN_FILL_MS = 3000;
-const TEAM_SIZES = ['2 to 5', '6 to 10', '11 to 25', '26 or more'];
+const TEAM_SIZES = ['1 to 5', '6 to 15', '16 to 30', '31 to 100', '100+'];
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Strip CR and LF so nothing the enquirer types can inject an email header
@@ -59,6 +59,7 @@ function looksLikeBot(payload) {
 function validate(payload) {
   const name = typeof payload.name === 'string' ? payload.name.trim() : '';
   const email = typeof payload.email === 'string' ? payload.email.trim() : '';
+  const phone = typeof payload.phone === 'string' ? payload.phone.trim() : '';
   const company = typeof payload.company === 'string' ? payload.company.trim() : '';
   const teamSize = typeof payload.teamSize === 'string' ? payload.teamSize.trim() : '';
   const notes = typeof payload.notes === 'string' ? payload.notes.trim() : '';
@@ -68,10 +69,12 @@ function validate(payload) {
   if (!TEAM_SIZES.includes(teamSize)) return null;
   if (name.length > 200 || company.length > 200) return null;
   if (email.length > 320 || notes.length > 2000) return null;
+  if (phone.length > 30) return null;
 
   return {
     name: singleLine(name),
     email: singleLine(email),
+    phone: singleLine(phone),
     company: singleLine(company),
     teamSize: singleLine(teamSize),
     notes: multiLine(notes)
@@ -133,8 +136,11 @@ export default async function handler(req, res) {
   }
 
   const notification = [
+    'Someone has requested information about Leadership Companion for their team.',
+    '',
     'Name: ' + enquiry.name,
     'Email: ' + enquiry.email,
+    'Phone: ' + (enquiry.phone || 'Not provided'),
     'Company: ' + enquiry.company,
     'Team size: ' + enquiry.teamSize,
     'Notes: ' + (enquiry.notes || 'None')
@@ -158,7 +164,7 @@ export default async function handler(req, res) {
         to: enquiry.email,
         replyTo: process.env.TEAM_ENQUIRY_TO,
         subject: 'We have your Leadership Companion enquiry',
-        text: 'Hi ' + enquiry.name + ', thanks for getting in touch about Leadership Companion for your team. One of the founders will come back to you within one business day. If it is easier, just reply to this email with any extra detail. Tobias and Kristina, Leadership Companion.'
+        text: 'Hi ' + enquiry.name + ', thanks for getting in touch about Leadership Companion for your team. One of our team will come back to you within one business day. If it is easier, just reply to this email with any extra detail. The Leadership Companion team.'
       });
     } catch (error) {
       // An auto-reply failure must not fail an enquiry we have already received
