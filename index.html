@@ -751,6 +751,10 @@
         /* Tightened for the pricing section only, so the three cards fit a 13 inch
            screen. Both halves are reduced because adjacent margins collapse to the
            larger of the two, so cutting only one would leave the gap at 48px. */
+        section#pricing {
+            padding: 48px 24px;
+        }
+
         section#pricing .section-header {
             margin-bottom: 32px;
         }
@@ -813,7 +817,7 @@
             line-height: 1.15;
             color: var(--blue-700);
             margin: 12px 0;
-            min-height: 6rem;
+            min-height: 5rem;
         }
 
         .pricing-price .currency {
@@ -826,17 +830,23 @@
             color: var(--slate-500);
         }
 
-        /* Hidden with visibility rather than display so the row never reflows */
+        /* Removed from flow in monthly mode so it reserves no space at all */
         .billed-annually {
             font-size: 0.875rem;
             font-weight: 500;
             color: var(--slate-500);
             margin-top: 0.375rem;
-            visibility: hidden;
+            display: none;
         }
 
         .pricing-grid.yearly .billed-annually {
-            visibility: visible;
+            display: block;
+        }
+
+        /* Yearly adds a line to Starter and Pro but not Team, so every card lifts
+           together and the three price rows stay level in both states. */
+        .pricing-grid.yearly .pricing-price {
+            min-height: 6rem;
         }
 
         .pricing-features {
@@ -1300,6 +1310,12 @@
 
             section {
                 padding: 60px 20px;
+            }
+
+            /* Matches the horizontal padding of every other section on mobile,
+               since the scoped desktop rule outranks the plain section selector */
+            section#pricing {
+                padding: 48px 20px;
             }
 
             .features-grid {
