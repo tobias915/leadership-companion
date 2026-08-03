@@ -164,7 +164,7 @@ export default async function handler(req, res) {
         to: enquiry.email,
         replyTo: process.env.TEAM_ENQUIRY_TO,
         subject: 'We have your Leadership Companion enquiry',
-        text: 'Hi ' + enquiry.name + ', thanks for getting in touch about Leadership Companion for your team. One of our team will come back to you within one business day. If it is easier, just reply to this email with any extra detail. The Leadership Companion team.'
+        text: 'Hi ' + enquiry.name + ', thanks for getting in touch about Leadership Companion for your team. One of our team members will come back to you within one business day. If it is easier, just reply to this email with any extra detail. The Leadership Companion team.'
       });
     } catch (error) {
       // An auto-reply failure must not fail an enquiry we have already received

@@ -128,6 +128,14 @@
             },
             {
                 "@type": "Question",
+                "name": "Is there an annual plan?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Both Starter and Pro are available on an annual plan at a discounted rate. Starter annual is $319 per year, which works out to $26 per month. Pro annual is $539 per year, which works out to $45 per month. That is the equivalent of one free month compared to paying monthly. You can switch between monthly and annual on the pricing page."
+                }
+            },
+            {
+                "@type": "Question",
                 "name": "What is included in Starter versus Pro?",
                 "acceptedAnswer": {
                     "@type": "Answer",
@@ -892,7 +900,7 @@
                 <a href="/#how-it-works" class="nav-link">How It Works</a>
                 <a href="/#pricing" class="nav-link">Pricing</a>
                 <a href="/faq" class="nav-link active">FAQ</a>
-                <a href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F" class="nav-cta nav-cta-ghost">Sign Up</a>
+                <a href="/#pricing" class="nav-cta nav-cta-ghost">Sign Up</a>
                 <a href="https://app.leadershipcompanion.co" class="nav-cta">Log In</a>
             </div>
         </div>
@@ -1018,6 +1026,16 @@
                 </div>
                 <div class="faq-answer-wrapper">
                     <div class="faq-answer">Starter is AUD $29 per month. Pro is AUD $49 per month. Team plans for three or more leaders are priced per seat with volume discounts. Tell us about your team and we will come back with a tailored quote within one business day.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span class="faq-question-text">Is there an annual plan?</span>
+                    <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                </div>
+                <div class="faq-answer-wrapper">
+                    <div class="faq-answer">Yes. Both Starter and Pro are available on an annual plan at a discounted rate. Starter annual is $319 per year, which works out to $26 per month. Pro annual is $539 per year, which works out to $45 per month. That is the equivalent of one free month compared to paying monthly. You can switch between monthly and annual on the pricing page.</div>
                 </div>
             </div>
 
@@ -1321,7 +1339,7 @@
                     </div>
                     <div class="team-field">
                         <label for="teamPhone">Phone number</label>
-                        <input type="tel" id="teamPhone" name="phone" placeholder="+61 4xx xxx xxx" maxlength="30" autocomplete="tel">
+                        <input type="tel" id="teamPhone" name="phone" placeholder="e.g. +1 555 000 0000" maxlength="30" autocomplete="tel">
                     </div>
                     <div class="team-field">
                         <label for="teamCompany">Company</label>
@@ -1340,7 +1358,7 @@
                     </div>
                     <div class="team-field">
                         <label for="teamNotes">Anything we should know?</label>
-                        <textarea id="teamNotes" name="notes" placeholder="Timing, questions, what you are looking for"></textarea>
+                        <textarea id="teamNotes" name="notes" placeholder="Timing, any questions, and what you are looking for"></textarea>
                     </div>
                     <div class="team-hp" aria-hidden="true">
                         <label for="teamWebsite">Website</label>
@@ -1425,7 +1443,7 @@
                 heading.setAttribute('tabindex', '-1');
                 heading.textContent = 'Thanks, we have it.';
                 var message = document.createElement('p');
-                message.textContent = 'One of our team will be in touch within one business day.';
+                message.textContent = 'One of our team members will be in touch within one business day.';
                 wrap.appendChild(heading);
                 wrap.appendChild(message);
                 modalBody.appendChild(wrap);

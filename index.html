@@ -141,6 +141,14 @@
             },
             {
                 "@type": "Question",
+                "name": "Is there an annual plan?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Both Starter and Pro are available on an annual plan at a discounted rate. Starter annual is $319 per year, which works out to $26 per month. Pro annual is $539 per year, which works out to $45 per month. That is the equivalent of one free month compared to paying monthly. You can switch between monthly and annual on the pricing page."
+                }
+            },
+            {
+                "@type": "Question",
                 "name": "Can I roll it out to my whole leadership team?",
                 "acceptedAnswer": {
                     "@type": "Answer",
@@ -681,6 +689,58 @@
         }
 
         /* ===== PRICING ===== */
+        .billing-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 4px;
+            max-width: 340px;
+            margin: 32px auto 0;
+            padding: 4px;
+            background: var(--slate-100);
+            border-radius: var(--radius-full);
+        }
+
+        .billing-option {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: var(--font-body);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--slate-600);
+            background: transparent;
+            border: none;
+            border-radius: var(--radius-full);
+            padding: 10px 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .billing-option:hover {
+            color: var(--blue-700);
+        }
+
+        .billing-option.active {
+            background: white;
+            color: var(--blue-900);
+            box-shadow: 0 2px 8px rgba(20, 40, 73, 0.12);
+        }
+
+        .billing-badge {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: white;
+            background: var(--green-600);
+            padding: 3px 8px;
+            border-radius: var(--radius-full);
+            white-space: nowrap;
+        }
+
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -688,11 +748,14 @@
             margin-top: 48px;
         }
 
+        /* Top padding reserves the badge row on every card, so the three titles,
+           price rows and feature lists all start at the same height. */
         .pricing-card {
+            position: relative;
             background: white;
             border: 2px solid var(--slate-200);
             border-radius: var(--radius-lg);
-            padding: 40px;
+            padding: 64px 40px 40px;
             text-align: center;
             transition: all 0.3s ease;
             display: flex;
@@ -705,7 +768,12 @@
             transform: scale(1.03);
         }
 
+        /* Taken out of flow so it cannot push the Pro card's title below the others */
         .pricing-badge {
+            position: absolute;
+            top: 22px;
+            left: 50%;
+            transform: translateX(-50%);
             display: inline-block;
             background: var(--blue-100);
             color: var(--blue-700);
@@ -715,7 +783,7 @@
             letter-spacing: 0.05em;
             padding: 6px 12px;
             border-radius: var(--radius);
-            margin-bottom: 16px;
+            white-space: nowrap;
         }
 
         .pricing-card h3 {
@@ -726,11 +794,15 @@
             margin-bottom: 8px;
         }
 
+        /* The min-height reserves room for the billed-annually line on every card,
+           including Team which never shows one. That keeps the feature lists level
+           and stops the price row jumping when the toggle switches to yearly. */
         .pricing-price {
             font-size: 3rem;
             font-weight: 700;
             color: var(--blue-700);
             margin: 20px 0;
+            min-height: 8.25rem;
         }
 
         .pricing-price .currency {
@@ -741,6 +813,19 @@
         .pricing-period {
             font-size: 1rem;
             color: var(--slate-500);
+        }
+
+        /* Hidden with visibility rather than display so the row never reflows */
+        .billed-annually {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--slate-500);
+            margin-top: 0.375rem;
+            visibility: hidden;
+        }
+
+        .pricing-grid.yearly .billed-annually {
+            visibility: visible;
         }
 
         .pricing-features {
@@ -771,6 +856,7 @@
             width: 100%;
             background: var(--blue-600);
             color: white;
+            font-family: var(--font-body);
             padding: 14px 28px;
             border-radius: var(--radius-full);
             font-size: 1rem;
@@ -1762,7 +1848,7 @@ body.team-modal-locked {
                 <a href="#how-it-works" class="nav-link">How It Works</a>
                 <a href="#pricing" class="nav-link">Pricing</a>
                 <a href="#faq" class="nav-link">FAQ</a>
-                <a href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F" class="nav-cta nav-cta-ghost">Sign Up</a>
+                <a href="#pricing" class="nav-cta nav-cta-ghost">Sign Up</a>
                 <a href="https://app.leadershipcompanion.co" class="nav-cta">Log In</a>
             </div>
         </div>
@@ -1777,7 +1863,7 @@ body.team-modal-locked {
             </div>
             <h1>The AI advisor that remembers your business. Always Available.</h1>
             <p class="hero-lead">Make better decisions, manage cash flow, handle tough conversations, and grow as a leader, all through natural conversation.</p>
-            <a href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F" class="hero-cta">
+            <a href="#pricing" class="hero-cta">
                 Get Started
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
@@ -2011,13 +2097,18 @@ body.team-modal-locked {
             <div class="section-label">Simple Pricing</div>
             <h2 class="section-title">Choose your plan</h2>
             <p class="section-desc">Start on your own, or bring your whole leadership team. Cancel anytime.</p>
+            <div class="billing-toggle" role="group" aria-label="Billing period">
+                <button type="button" class="billing-option active" data-billing="monthly" aria-pressed="true">Monthly</button>
+                <button type="button" class="billing-option" data-billing="yearly" aria-pressed="false">Yearly <span class="billing-badge">Save 8%</span></button>
+            </div>
         </div>
         <div class="pricing-grid">
             <div class="pricing-card">
                 <h3>Starter</h3>
                 <div class="pricing-price">
-                    <span class="currency">$</span>29
+                    <span class="currency">$</span><span class="price-amount" data-monthly="29" data-annual="26">29</span>
                     <div class="pricing-period">per month</div>
+                    <div class="billed-annually">Billed $319 per year</div>
                 </div>
                 <ul class="pricing-features">
                     <li>
@@ -2045,14 +2136,15 @@ body.team-modal-locked {
                         We will plant a tree a month for you to help the planet  
                     </li>
                 </ul>
-                <a href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dstarter" class="pricing-cta">Get Started</a>
+                <a href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dstarter" class="pricing-cta" data-monthly-href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dstarter" data-annual-href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dstarter%26price%3Dprice_1U0EjCS5QqLTBJi8oUdbLjtt">Get Started</a>
             </div>
             <div class="pricing-card featured">
                 <div class="pricing-badge">Most Popular</div>
                 <h3>Pro</h3>
                 <div class="pricing-price">
-                    <span class="currency">$</span>49
+                    <span class="currency">$</span><span class="price-amount" data-monthly="49" data-annual="45">49</span>
                     <div class="pricing-period">per month</div>
+                    <div class="billed-annually">Billed $539 per year</div>
                 </div>
                 <ul class="pricing-features">
                     <li>
@@ -2080,7 +2172,7 @@ body.team-modal-locked {
                         We will plant two trees per month for you to help the planet  
                     </li>
                 </ul>
-                <a href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dpro" class="pricing-cta">Get Started</a>
+                <a href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dpro" class="pricing-cta" data-monthly-href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dpro" data-annual-href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dpro%26price%3Dprice_1U0EkeS5QqLTBJi8oYA7J2zq">Get Started</a>
             </div>
             <div class="pricing-card dark">
                 <h3>Team</h3>
@@ -2157,6 +2249,15 @@ body.team-modal-locked {
                 </div>
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false">
+                        <span>Is there an annual plan?</span>
+                        <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Yes. Both Starter and Pro are available on an annual plan at a discounted rate. Starter annual is $319 per year, which works out to $26 per month. Pro annual is $539 per year, which works out to $45 per month. That is the equivalent of one free month compared to paying monthly. You can switch between monthly and annual on the pricing page.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
                         <span>Can I roll it out to my whole leadership team?</span>
                         <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
                     </button>
@@ -2208,13 +2309,13 @@ body.team-modal-locked {
                 <div class="founding-card">
                     <h3>Starter</h3>
                     <div class="founding-card-price"><span class="currency">$</span>29<span class="founding-card-period">/mo</span></div>
-                    <a href="https://app.leadershipcompanion.co?tier=starter" class="founding-card-cta">Get Started</a>
+                    <a href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dstarter" class="founding-card-cta" data-monthly-href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dstarter" data-annual-href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dstarter%26price%3Dprice_1U0EjCS5QqLTBJi8oUdbLjtt">Get Started</a>
                 </div>
                 <div class="founding-card featured">
                     <div class="founding-card-badge">Recommended</div>
                     <h3>Pro</h3>
                     <div class="founding-card-price"><span class="currency">$</span>49<span class="founding-card-period">/mo</span></div>
-                    <a href="https://app.leadershipcompanion.co?tier=pro" class="founding-card-cta">Get Started</a>
+                    <a href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dpro" class="founding-card-cta" data-monthly-href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dpro" data-annual-href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dpro%26price%3Dprice_1U0EkeS5QqLTBJi8oYA7J2zq">Get Started</a>
                 </div>
             </div>
 
@@ -2284,6 +2385,40 @@ body.team-modal-locked {
 
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+        // Monthly and yearly billing toggle
+        (function () {
+            const toggle = document.querySelector('.billing-toggle');
+            const grid = document.querySelector('.pricing-grid');
+            if (!toggle || !grid) return;
+
+            const options = toggle.querySelectorAll('[data-billing]');
+            const amounts = document.querySelectorAll('.price-amount');
+            const ctas = document.querySelectorAll('[data-monthly-href]');
+
+            function setBilling(period) {
+                const yearly = period === 'yearly';
+
+                options.forEach(option => {
+                    const isActive = option.dataset.billing === period;
+                    option.classList.toggle('active', isActive);
+                    option.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+                });
+
+                grid.classList.toggle('yearly', yearly);
+
+                amounts.forEach(amount => {
+                    amount.textContent = yearly ? amount.dataset.annual : amount.dataset.monthly;
+                });
+
+                ctas.forEach(cta => {
+                    cta.href = yearly ? cta.dataset.annualHref : cta.dataset.monthlyHref;
+                });
+            }
+
+            options.forEach(option => {
+                option.addEventListener('click', () => setBilling(option.dataset.billing));
+            });
+        })();
     </script>
 
     <!-- TEAM ENQUIRY MODAL -->
@@ -2304,7 +2439,7 @@ body.team-modal-locked {
                     </div>
                     <div class="team-field">
                         <label for="teamPhone">Phone number</label>
-                        <input type="tel" id="teamPhone" name="phone" placeholder="+61 4xx xxx xxx" maxlength="30" autocomplete="tel">
+                        <input type="tel" id="teamPhone" name="phone" placeholder="e.g. +1 555 000 0000" maxlength="30" autocomplete="tel">
                     </div>
                     <div class="team-field">
                         <label for="teamCompany">Company</label>
@@ -2323,7 +2458,7 @@ body.team-modal-locked {
                     </div>
                     <div class="team-field">
                         <label for="teamNotes">Anything we should know?</label>
-                        <textarea id="teamNotes" name="notes" placeholder="Timing, questions, what you are looking for"></textarea>
+                        <textarea id="teamNotes" name="notes" placeholder="Timing, any questions, and what you are looking for"></textarea>
                     </div>
                     <div class="team-hp" aria-hidden="true">
                         <label for="teamWebsite">Website</label>
@@ -2405,7 +2540,7 @@ body.team-modal-locked {
                 heading.setAttribute('tabindex', '-1');
                 heading.textContent = 'Thanks, we have it.';
                 const message = document.createElement('p');
-                message.textContent = 'One of our team will be in touch within one business day.';
+                message.textContent = 'One of our team members will be in touch within one business day.';
                 wrap.appendChild(heading);
                 wrap.appendChild(message);
                 modalBody.appendChild(wrap);
