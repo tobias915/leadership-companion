@@ -2,6 +2,7 @@
     "name": "leadership-companion",
     "version": "1.0.0",
     "dependencies": {
+      "@aws-sdk/client-ses": "^3.1101.0",
       "googleapis": "^105.0.0",
       "stripe": "^14.0.0"
     }

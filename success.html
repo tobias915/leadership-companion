@@ -197,7 +197,7 @@
             Back to Leadership Companion
         </a>
 
-        <p class="fine-print">Questions? Email us at hello@leadershipcompanion.co</p>
+        <p class="fine-print" id="contactLine">Questions? Email us at </p>
     </div>
 
     <script>
@@ -221,6 +221,12 @@
             tierBadge.textContent = 'Welcome';
             headline.textContent = "You're in.";
             successText.textContent = "Welcome to Leadership Companion. We'll be in touch before launch with access details.";
+        }
+
+        // Contact address assembled at runtime so it never sits in the static HTML
+        const contactLine = document.getElementById('contactLine');
+        if (contactLine) {
+            contactLine.appendChild(document.createTextNode(['hello', 'leadershipcompanion.co'].join('@')));
         }
     </script>
 </body>

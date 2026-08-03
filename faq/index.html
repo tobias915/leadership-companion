@@ -123,7 +123,7 @@
                 "name": "How much does it cost?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Starter is AUD $29 per month. Pro is AUD $49 per month."
+                    "text": "Starter is AUD $29 per month. Pro is AUD $49 per month. Team plans for three or more leaders are priced per seat with volume discounts. Tell us about your team and we will come back with a tailored quote within one business day."
                 }
             },
             {
@@ -131,7 +131,15 @@
                 "name": "What is included in Starter versus Pro?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Starter ($29/month) includes full text-based conversation, complete memory across all sessions, all specialist knowledge areas, Monday morning focus messages, Friday reflections, and decision tracking and follow-ups for your first three weeks. Pro ($49/month) adds voice conversation, file uploads (drop in contracts, P&Ls, spreadsheets for in-conversation analysis), persistent decision tracking and follow-ups that continue beyond three weeks, pattern recognition across sessions, and quarterly leadership reviews that show how you have developed over time. Both plans include the full depth of the companion's behavioural science. Both get the Monday and Friday messages. Both get the complete memory system."
+                    "text": "Starter ($29/month) includes full text-based conversation, complete memory across all sessions, all specialist knowledge areas, Monday morning focus messages, Friday reflections, and decision tracking and follow-ups for your first three weeks. Pro ($49/month) adds voice conversation, file uploads (drop in contracts, P&Ls, spreadsheets for in-conversation analysis), persistent decision tracking and follow-ups that continue beyond three weeks, pattern recognition across sessions, and quarterly leadership reviews that show how you have developed over time. Both plans include the full depth of the companion's behavioural science. Both get the Monday and Friday messages. Both get the complete memory system. Team gives every leader on your team the full Pro experience, with volume pricing, one invoice, and guided onboarding for the group."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I roll it out to my whole leadership team?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. The Team plan gives every leader their own full Pro companion, with volume pricing from three seats and a single invoice for your organisation. One thing matters here more than anything: each leader's conversations remain completely private. Your company pays for the seats, but nobody in the business, and nobody at Leadership Companion, can read what any individual shares with their companion. That privacy is exactly what makes leaders actually use it."
                 }
             },
             {
@@ -163,7 +171,7 @@
                 "name": "Who can see my conversations?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Nobody. Your conversations are private by design. The architecture is built so that no one at Leadership Companion, including the founders, can access the content of what you share. Leaders share things in private that they cannot share anywhere else. That safety is structural, built into the architecture from day one. Everything is encrypted at rest and in transit."
+                    "text": "Nobody. Your conversations are private by design. The architecture is built so that no one at Leadership Companion, including the founders, can access the content of what you share. Leaders share things in private that they cannot share anywhere else. That safety is structural, built into the architecture from day one. Everything is encrypted at rest and in transit. This holds on the Team plan too. If your company pays for your seat, your employer still cannot see your conversations."
                 }
             },
             {
@@ -655,7 +663,195 @@
                 gap: 12px;
             }
         }
+
+        /* ===== TEAM ENQUIRY MODAL ===== */
+        .team-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(20, 40, 73, 0.6);
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+        }
+
+        .team-modal.open {
+            display: flex;
+        }
+
+        .team-modal-card {
+            position: relative;
+            width: 100%;
+            max-width: 520px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: var(--warm-50);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: 0 24px 60px rgba(20, 40, 73, 0.35);
+            text-align: left;
+        }
+
+        .team-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            border-radius: var(--radius-full);
+            color: var(--slate-500);
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .team-modal-close:hover {
+            background: var(--slate-100);
+            color: var(--blue-900);
+        }
+
+        .team-modal-card h2 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--blue-900);
+            margin-bottom: 8px;
+            padding-right: 40px;
+        }
+
+        .team-modal-intro {
+            font-size: 0.9375rem;
+            color: var(--slate-600);
+            margin-bottom: 24px;
+        }
+
+        .team-field {
+            margin-bottom: 16px;
+        }
+
+        .team-field label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--blue-900);
+            margin-bottom: 6px;
+        }
+
+        .team-field input,
+        .team-field select,
+        .team-field textarea {
+            width: 100%;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--slate-800);
+            background: white;
+            border: 2px solid var(--slate-200);
+            border-radius: var(--radius);
+            padding: 12px 14px;
+            transition: border-color 0.2s ease;
+        }
+
+        .team-field textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .team-field input:focus,
+        .team-field select:focus,
+        .team-field textarea:focus {
+            outline: none;
+            border-color: var(--blue-400);
+        }
+
+        .team-hp {
+            position: absolute;
+            left: -9999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        .team-modal-error {
+            font-size: 0.9375rem;
+            color: #b91c1c;
+            margin-bottom: 12px;
+        }
+
+        .team-submit {
+            display: block;
+            width: 100%;
+            background: var(--blue-600);
+            color: white;
+            padding: 14px 28px;
+            border-radius: var(--radius-full);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .team-submit:hover:not(:disabled) {
+            background: var(--blue-700);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(42, 111, 196, 0.3);
+        }
+
+        .team-submit:disabled {
+            opacity: 0.65;
+            cursor: default;
+        }
+
+        .team-modal-fine {
+            font-size: 0.8125rem;
+            color: var(--slate-500);
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        .team-modal-fine a {
+            color: var(--blue-600);
+        }
+
+        .team-modal-success h2 {
+            padding-right: 0;
+        }
+
+        .team-modal-success p {
+            font-size: 0.9375rem;
+            color: var(--slate-600);
+        }
+
+        body.team-modal-locked {
+            overflow: hidden;
+        }
+
+        @media (max-width: 600px) {
+            .team-modal {
+                padding: 12px;
+            }
+
+            .team-modal-card {
+                max-height: 92vh;
+                padding: 32px 22px;
+            }
+        }
     </style>
+
+    <!-- Vercel Analytics -->
+    <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -792,7 +988,7 @@
                     <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
                 </div>
                 <div class="faq-answer-wrapper">
-                    <div class="faq-answer">Starter is AUD $29 per month. Pro is AUD $49 per month.</div>
+                    <div class="faq-answer">Starter is AUD $29 per month. Pro is AUD $49 per month. Team plans for three or more leaders are priced per seat with volume discounts. Tell us about your team and we will come back with a tailored quote within one business day.</div>
                 </div>
             </div>
 
@@ -802,7 +998,17 @@
                     <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
                 </div>
                 <div class="faq-answer-wrapper">
-                    <div class="faq-answer">Starter ($29/month) includes full text-based conversation, complete memory across all sessions, all specialist knowledge areas, Monday morning focus messages, Friday reflections, and decision tracking and follow-ups for your first three weeks. Pro ($49/month) adds voice conversation, file uploads (drop in contracts, P&amp;Ls, spreadsheets for in-conversation analysis), persistent decision tracking and follow-ups that continue beyond three weeks, pattern recognition across sessions, and quarterly leadership reviews that show how you have developed over time. Both plans include the full depth of the companion's behavioural science. Both get the Monday and Friday messages. Both get the complete memory system.</div>
+                    <div class="faq-answer">Starter ($29/month) includes full text-based conversation, complete memory across all sessions, all specialist knowledge areas, Monday morning focus messages, Friday reflections, and decision tracking and follow-ups for your first three weeks. Pro ($49/month) adds voice conversation, file uploads (drop in contracts, P&amp;Ls, spreadsheets for in-conversation analysis), persistent decision tracking and follow-ups that continue beyond three weeks, pattern recognition across sessions, and quarterly leadership reviews that show how you have developed over time. Both plans include the full depth of the companion's behavioural science. Both get the Monday and Friday messages. Both get the complete memory system. Team gives every leader on your team the full Pro experience, with volume pricing, one invoice, and guided onboarding for the group.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span class="faq-question-text">Can I roll it out to my whole leadership team?</span>
+                    <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                </div>
+                <div class="faq-answer-wrapper">
+                    <div class="faq-answer">Yes. The Team plan gives every leader their own full Pro companion, with volume pricing from three seats and a single invoice for your organisation. One thing matters here more than anything: each leader's conversations remain completely private. Your company pays for the seats, but nobody in the business, and nobody at Leadership Companion, can read what any individual shares with their companion. That privacy is exactly what makes leaders actually use it.</div>
                 </div>
             </div>
 
@@ -847,7 +1053,7 @@
                     <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
                 </div>
                 <div class="faq-answer-wrapper">
-                    <div class="faq-answer">Nobody. Your conversations are private by design. The architecture is built so that no one at Leadership Companion, including the founders, can access the content of what you share. Leaders share things in private that they cannot share anywhere else. That safety is structural, built into the architecture from day one. Everything is encrypted at rest and in transit.</div>
+                    <div class="faq-answer">Nobody. Your conversations are private by design. The architecture is built so that no one at Leadership Companion, including the founders, can access the content of what you share. Leaders share things in private that they cannot share anywhere else. That safety is structural, built into the architecture from day one. Everything is encrypted at rest and in transit. This holds on the Team plan too. If your company pays for your seat, your employer still cannot see your conversations.</div>
                 </div>
             </div>
 
@@ -1033,7 +1239,7 @@
                     <a href="/Leadership_Companion_Global_Data_Privacy_Policy_26022026.pdf" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
                     <a href="/Leadership_Companion_Terms_of_Service_26022026.pdf" target="_blank" rel="noopener noreferrer">Terms of Service</a>
                     <a href="/Leadership_Companion_Sustainability_Policy_02032026.pdf" target="_blank" rel="noopener noreferrer">Sustainability Policy</a>
-                    <a href="#" id="contactLink">Contact</a>
+                    <a href="#" id="contactLink" data-open-team-form>Contact</a>
                 </div>
             </div>
             <div class="footer-right">
@@ -1066,13 +1272,165 @@
             }
         }
 
-        // Contact email obfuscation
-        var contactLink = document.getElementById('contactLink');
-        if (contactLink) {
-            var user = 'hello';
-            var domain = 'leadershipcompanion.com.au';
-            contactLink.href = 'mailto:' + user + '@' + domain;
-        }
+    </script>
+
+    <!-- TEAM ENQUIRY MODAL -->
+    <div class="team-modal" id="teamModal" role="dialog" aria-modal="true" aria-labelledby="teamModalTitle" aria-hidden="true">
+        <div class="team-modal-card">
+            <button type="button" class="team-modal-close" id="teamModalClose" aria-label="Close">&times;</button>
+            <div id="teamModalBody">
+                <h2 id="teamModalTitle">Tell us about your team</h2>
+                <p class="team-modal-intro">A few details and one of the founders will come back to you within one business day.</p>
+                <form id="teamEnquiryForm">
+                    <div class="team-field">
+                        <label for="teamName">Your name</label>
+                        <input type="text" id="teamName" name="name" required autocomplete="name">
+                    </div>
+                    <div class="team-field">
+                        <label for="teamEmail">Work email</label>
+                        <input type="email" id="teamEmail" name="email" required placeholder="you@company.com.au" autocomplete="email">
+                    </div>
+                    <div class="team-field">
+                        <label for="teamCompany">Company</label>
+                        <input type="text" id="teamCompany" name="company" required autocomplete="organization">
+                    </div>
+                    <div class="team-field">
+                        <label for="teamSize">How many leaders?</label>
+                        <select id="teamSize" name="teamSize" required>
+                            <option value="">Please choose</option>
+                            <option value="2 to 5">2 to 5</option>
+                            <option value="6 to 10">6 to 10</option>
+                            <option value="11 to 25">11 to 25</option>
+                            <option value="26 or more">26 or more</option>
+                        </select>
+                    </div>
+                    <div class="team-field">
+                        <label for="teamNotes">Anything we should know?</label>
+                        <textarea id="teamNotes" name="notes" placeholder="Timing, questions, what is prompting this"></textarea>
+                    </div>
+                    <div class="team-hp" aria-hidden="true">
+                        <label for="teamWebsite">Website</label>
+                        <input type="text" id="teamWebsite" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+                    <input type="hidden" id="teamStartedAt" name="startedAt" value="">
+                    <p class="team-modal-error" id="teamModalError" role="status" aria-live="polite"></p>
+                    <button type="submit" class="team-submit" id="teamSubmit">Send enquiry</button>
+                    <p class="team-modal-fine">We only use these details to respond to your enquiry. See our <a href="/Leadership_Companion_Global_Data_Privacy_Policy_26022026.pdf" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Team enquiry modal
+        (function () {
+            var modal = document.getElementById('teamModal');
+            if (!modal) return;
+
+            var modalBody = document.getElementById('teamModalBody');
+            var form = document.getElementById('teamEnquiryForm');
+            var errorEl = document.getElementById('teamModalError');
+            var startedAtEl = document.getElementById('teamStartedAt');
+            var submitBtn = document.getElementById('teamSubmit');
+            var lastFocused = null;
+
+            function contactAddress() {
+                return ['hello', 'leadershipcompanion.co'].join('@');
+            }
+
+            function openModal(trigger) {
+                lastFocused = trigger || document.activeElement;
+                startedAtEl.value = String(Date.now());
+                modal.classList.add('open');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('team-modal-locked');
+                var first = document.getElementById('teamName');
+                if (first) first.focus();
+            }
+
+            function closeModal() {
+                modal.classList.remove('open');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('team-modal-locked');
+                if (lastFocused && typeof lastFocused.focus === 'function') {
+                    lastFocused.focus();
+                }
+            }
+
+            var triggers = document.querySelectorAll('[data-open-team-form]');
+            for (var i = 0; i < triggers.length; i++) {
+                (function (trigger) {
+                    trigger.addEventListener('click', function (event) {
+                        event.preventDefault();
+                        openModal(trigger);
+                    });
+                })(triggers[i]);
+            }
+
+            document.getElementById('teamModalClose').addEventListener('click', closeModal);
+
+            modal.addEventListener('click', function (event) {
+                if (event.target === modal) closeModal();
+            });
+
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && modal.classList.contains('open')) closeModal();
+            });
+
+            function showError() {
+                errorEl.textContent = '';
+                errorEl.appendChild(document.createTextNode('That did not send. Please try again, or email us at ' + contactAddress() + '.'));
+            }
+
+            function showSuccess() {
+                modalBody.textContent = '';
+                var wrap = document.createElement('div');
+                wrap.className = 'team-modal-success';
+                var heading = document.createElement('h2');
+                heading.id = 'teamModalTitle';
+                heading.setAttribute('tabindex', '-1');
+                heading.textContent = 'Thanks, we have it.';
+                var message = document.createElement('p');
+                message.textContent = 'One of the founders will be in touch within one business day.';
+                wrap.appendChild(heading);
+                wrap.appendChild(message);
+                modalBody.appendChild(wrap);
+                heading.focus();
+            }
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                errorEl.textContent = '';
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+
+                fetch('/api/team-enquiry', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: document.getElementById('teamName').value,
+                        email: document.getElementById('teamEmail').value,
+                        company: document.getElementById('teamCompany').value,
+                        teamSize: document.getElementById('teamSize').value,
+                        notes: document.getElementById('teamNotes').value,
+                        website: document.getElementById('teamWebsite').value,
+                        startedAt: Number(startedAtEl.value)
+                    })
+                }).then(function (response) {
+                    return response.json().catch(function () { return null; }).then(function (data) {
+                        if (response.ok && data && data.ok) {
+                            showSuccess();
+                            return;
+                        }
+                        throw new Error('Enquiry failed');
+                    });
+                }).catch(function () {
+                    showError();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send enquiry';
+                });
+            });
+        })();
     </script>
 </body>
 </html>
