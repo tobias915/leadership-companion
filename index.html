@@ -3,6 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Client error beacon: reports crashes to the Vercel logs. Wrapped throughout
+     so a hostile browser cannot turn the reporter into the fault. -->
+<script>
+(function () {
+    var ENDPOINT = '/api/client-error';
+    var MAX_REPORTS = 3;
+    var sent = 0;
+
+    // A real write and read, because Safari with Block All Cookies throws on the
+    // getter itself, so checking that window.localStorage exists proves nothing
+    function storageOk() {
+        try {
+            var key = '__lc_probe__';
+            window.localStorage.setItem(key, '1');
+            var value = window.localStorage.getItem(key);
+            window.localStorage.removeItem(key);
+            return value === '1';
+        } catch (error) {
+            return false;
+        }
+    }
+
+    function cookieOk() {
+        try {
+            return navigator.cookieEnabled === true;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    function report(message, stack) {
+        try {
+            if (sent >= MAX_REPORTS) return;
+            sent++;
+
+            var body = JSON.stringify({
+                message: String(message === undefined || message === null ? '' : message).slice(0, 300),
+                stack: String(stack === undefined || stack === null ? '' : stack).split(/\r?\n/).slice(0, 15).join(' | ').slice(0, 1000),
+                path: window.location.pathname,
+                userAgent: navigator.userAgent,
+                cookieEnabled: cookieOk(),
+                storageOk: storageOk(),
+                at: new Date().toISOString()
+            });
+
+            if (navigator.sendBeacon && navigator.sendBeacon(ENDPOINT, body)) return;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', ENDPOINT, true);
+            xhr.setRequestHeader('Content-Type', 'text/plain');
+            xhr.send(body);
+        } catch (error) {
+            // Nothing left to do. Never rethrow from the reporter.
+        }
+    }
+
+    window.addEventListener('error', function (event) {
+        var err = event.error;
+        report(event.message || (err && err.message), err && err.stack);
+    });
+
+    window.addEventListener('unhandledrejection', function (event) {
+        var reason = event.reason;
+        report(reason && reason.message ? reason.message : String(reason), reason && reason.stack);
+    });
+})();
+</script>
+
 <!-- Google Fonts: Fraunces + DM Sans -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1851,9 +1919,20 @@ body.team-modal-locked {
     try { stored = localStorage.getItem('referralCode'); } catch(e) {}
     if (!stored) return;
     document.querySelectorAll('a[href*="app.leadershipcompanion"]').forEach(function(a) {
-      var url = new URL(a.href);
-      url.searchParams.set('ref', stored);
-      a.href = url.toString();
+      try {
+        var url = new URL(a.href);
+        var redirect = url.searchParams.get('redirect_url');
+        if (redirect) {
+          // The sign-up portal drops parameters it does not recognise, so the
+          // code has to travel inside the encoded redirect_url to reach the app
+          var target = new URL(redirect);
+          target.searchParams.set('ref', stored);
+          url.searchParams.set('redirect_url', target.toString());
+        } else {
+          url.searchParams.set('ref', stored);
+        }
+        a.href = url.toString();
+      } catch (e) {}
     });
   });
 })();
@@ -2398,16 +2477,22 @@ body.team-modal-locked {
             });
         });
 
-        // Scroll reveal
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
+        // Scroll reveal. These sections start at opacity 0, so a browser without
+        // IntersectionObserver is shown them straight away rather than left with a gap.
+        const revealTargets = document.querySelectorAll('.reveal');
+        if (typeof window.IntersectionObserver === 'function') {
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
 
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+            revealTargets.forEach(el => revealObserver.observe(el));
+        } else {
+            revealTargets.forEach(el => el.classList.add('visible'));
+        }
 
         // Monthly and yearly billing toggle
         (function () {
@@ -2540,7 +2625,8 @@ body.team-modal-locked {
                 });
             });
 
-            document.getElementById('teamModalClose').addEventListener('click', closeModal);
+            const closeButton = document.getElementById('teamModalClose');
+            if (closeButton) closeButton.addEventListener('click', closeModal);
 
             modal.addEventListener('click', (event) => {
                 if (event.target === modal) closeModal();

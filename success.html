@@ -4,6 +4,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Client error beacon: reports crashes to the Vercel logs. Wrapped throughout
+         so a hostile browser cannot turn the reporter into the fault. -->
+    <script>
+    (function () {
+        var ENDPOINT = '/api/client-error';
+        var MAX_REPORTS = 3;
+        var sent = 0;
+
+        // A real write and read, because Safari with Block All Cookies throws on the
+        // getter itself, so checking that window.localStorage exists proves nothing
+        function storageOk() {
+            try {
+                var key = '__lc_probe__';
+                window.localStorage.setItem(key, '1');
+                var value = window.localStorage.getItem(key);
+                window.localStorage.removeItem(key);
+                return value === '1';
+            } catch (error) {
+                return false;
+            }
+        }
+
+        function cookieOk() {
+            try {
+                return navigator.cookieEnabled === true;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        function report(message, stack) {
+            try {
+                if (sent >= MAX_REPORTS) return;
+                sent++;
+
+                var body = JSON.stringify({
+                    message: String(message === undefined || message === null ? '' : message).slice(0, 300),
+                    stack: String(stack === undefined || stack === null ? '' : stack).split(/\r?\n/).slice(0, 15).join(' | ').slice(0, 1000),
+                    path: window.location.pathname,
+                    userAgent: navigator.userAgent,
+                    cookieEnabled: cookieOk(),
+                    storageOk: storageOk(),
+                    at: new Date().toISOString()
+                });
+
+                if (navigator.sendBeacon && navigator.sendBeacon(ENDPOINT, body)) return;
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', ENDPOINT, true);
+                xhr.setRequestHeader('Content-Type', 'text/plain');
+                xhr.send(body);
+            } catch (error) {
+                // Nothing left to do. Never rethrow from the reporter.
+            }
+        }
+
+        window.addEventListener('error', function (event) {
+            var err = event.error;
+            report(event.message || (err && err.message), err && err.stack);
+        });
+
+        window.addEventListener('unhandledrejection', function (event) {
+            var reason = event.reason;
+            report(reason && reason.message ? reason.message : String(reason), reason && reason.stack);
+        });
+    })();
+    </script>
+
     <title>Welcome to Leadership Companion</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -205,9 +273,15 @@
         const params = new URLSearchParams(window.location.search);
         const tier = params.get('tier');
 
-        const tierBadge = document.getElementById('tierBadge');
-        const headline = document.getElementById('headline');
-        const successText = document.getElementById('successText');
+        // All three ids exist today. The stand in keeps the confirmation
+        // rendering if the markup ever changes underneath this script.
+        function byId(id) {
+            return document.getElementById(id) || { textContent: '' };
+        }
+
+        const tierBadge = byId('tierBadge');
+        const headline = byId('headline');
+        const successText = byId('successText');
 
         if (tier === 'starter') {
             tierBadge.textContent = 'Starter';
