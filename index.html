@@ -88,7 +88,7 @@
 
     <!-- SEO: Updated title with target keywords -->
     
-    <title>AI Business Advisor That Remembers You | Leadership Companion</title>
+    <title>A private companion for the leader everyone relies on | Leadership Companion</title>
 
     <!-- SEO: Updated meta description with keywords -->
     <meta name="description" content="AI coaching for business owners, founders, and leaders. Remembers your context, follows up on commitments, gets smarter over time. From AUD $29/month.">
@@ -109,7 +109,7 @@
     <!-- Twitter/X Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Leadership Companion | You do not have to lead alone">
-    <meta name="twitter:description" content="The AI advisor that never forgets, never judges, and never bills by the hour. Built for leaders who carry it alone.">
+    <meta name="twitter:description" content="The companion that never forgets, never judges, and never bills by the hour. Built for leaders who carry it alone.">
     <meta name="twitter:image" content="https://leadershipcompanion.co/og-image.png">
     <meta name="twitter:image:width" content="1200">
     <meta name="twitter:image:height" content="630">
@@ -170,7 +170,7 @@
             "Voice conversation support",
             "Longitudinal memory of your business context",
             "Behavioural science-backed decision frameworks",
-            "Proactive follow-ups via email and SMS",
+            "Proactive follow-ups by email",
             "Cognitive style intelligence and personalised responses",
             "File and document uploads for in-conversation analysis (Pro)"
         ]
@@ -196,7 +196,7 @@
                 "name": "What is included in Starter versus Pro?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Starter ($29/month) includes full text-based conversation, complete memory across all sessions, all specialist knowledge areas, Monday morning focus messages, Friday reflections, and decision tracking and follow-ups for your first three weeks. Pro ($49/month) adds voice conversation, file uploads (drop in contracts, P&Ls, spreadsheets for in-conversation analysis), persistent decision tracking and follow-ups that continue beyond three weeks, pattern recognition across sessions, and quarterly leadership reviews that show how you have developed over time. Both plans include the full depth of the companion's behavioural science. Both get the Monday and Friday messages. Both get the complete memory system. Team gives every leader on your team the full Pro experience, with volume pricing, one invoice, and guided onboarding for the group."
+                    "text": "Starter ($29/month) includes full text-based conversation, complete memory across all sessions, all specialist knowledge areas, Monday morning focus messages, Friday reflections, and decision tracking and follow-ups for your first three weeks. Pro ($49/month) adds voice conversation, file uploads (drop in contracts, P&Ls, spreadsheets for in-conversation analysis), persistent decision tracking and follow-ups that continue beyond three weeks, and pattern recognition across sessions. Both plans include the full depth of the companion's behavioural science. Both get the Monday and Friday messages. Both get the complete memory system. Team gives every leader on your team the full Pro experience, with volume pricing, one invoice, and guided onboarding for the group."
                 }
             },
             {
@@ -220,7 +220,7 @@
                 "name": "Can I roll it out to my whole leadership team?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Yes. The Team plan gives every leader their own full Pro companion, with volume pricing from three seats and a single invoice for your organisation. One thing matters here more than anything: each leader's conversations remain completely private. Your company pays for the seats, but nobody in the business, and nobody at Leadership Companion, can read what any individual shares with their companion. That privacy is exactly what makes leaders actually use it."
+                    "text": "Yes. The Team plan gives every leader their own full Pro companion, with volume pricing from three seats and a single invoice for your organisation. One thing matters here more than anything: each leader's conversations remain completely private. Your company pays for the seats, but nobody in the business can read what any individual shares with their companion. That privacy is exactly what makes leaders actually use it."
                 }
             },
             {
@@ -236,7 +236,7 @@
                 "name": "Who can see my conversations?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Nobody. Your conversations are private by design. The architecture is built so that no one at Leadership Companion, including the founders, can access the content of what you share. Leaders share things in private that they cannot share anywhere else. That safety is structural, built into the architecture from day one. Everything is encrypted at rest and in transit. This holds on the Team plan too. If your company pays for your seat, your employer still cannot see your conversations."
+                    "text": "Your conversations are private by design. Access to our systems is limited by design. No one at your organisation can access them. Leaders share things in private that they cannot share anywhere else. Everything is encrypted at rest and in transit. This holds on the Team plan too. If your company pays for your seat, your employer still cannot see your conversations."
                 }
             },
             {
@@ -1408,12 +1408,25 @@
             }
         }
 
-        @media (max-width: 374px) {
-            .hero {
-                padding-top: 100px;
+
+        @media (max-width: 400px) {
+            nav {
+                padding: 16px 12px;
+            }
+
+            .nav-links {
+                gap: 8px;
+            }
+
+            .nav-cta {
+                padding: 10px 10px;
+                font-size: 0.8125rem;
+            }
+
+            .nav-cta-ghost {
+                padding: 8px 9px;
             }
         }
-
 
 /* ===== SEO DEEP CONTENT ===== */
 .deep-content {
@@ -1549,36 +1562,6 @@
 
 .deep-block p + p {
     margin-top: 12px;
-}
-
-.deep-audience-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 16px;
-}
-
-.deep-audience-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 14px;
-    background: var(--blue-50);
-    border: 1px solid var(--blue-100);
-    border-radius: var(--radius-full);
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--blue-700);
-}
-
-.deep-audience-tag svg {
-    width: 12px;
-    height: 12px;
-    stroke: var(--blue-400);
-    fill: none;
-    stroke-width: 2.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
 }
 
 /* Responsive */
@@ -1906,6 +1889,384 @@ body.team-modal-locked {
     }
 }
 
+
+/* ===== TESTIMONIAL CAROUSEL ===== */
+#leaders {
+    max-width: none;
+    padding: 36px 0 40px;
+    background: var(--blue-50);
+    overflow: hidden;
+}
+
+#leaders-heading {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--slate-500);
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.leaders-viewport {
+    position: relative;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.leaders-track {
+    display: flex;
+    align-items: stretch;
+    gap: 20px;
+    list-style: none;
+    padding: 6px 0;
+    transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.leaders-card {
+    list-style: none;
+    width: 360px;
+    flex: none;
+    opacity: 0.4;
+    transform: scale(0.92);
+    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* min-height comes from the longest quote in the set, so the row never jumps
+   when the active card changes or a quote rotates */
+.leaders-card figure {
+    height: 100%;
+    min-height: 320px;
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+    padding: 24px 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 16px rgba(42, 111, 196, 0.06);
+    transition: box-shadow 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.leaders-card.is-active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.leaders-card.is-active figure {
+    box-shadow: 0 14px 36px rgba(42, 111, 196, 0.16);
+}
+
+.leaders-quote {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--slate-700);
+}
+
+.leaders-card:not(.is-active) .leaders-quote:not(.is-off) {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Quotes that are not showing stay in the page source, out of the layout */
+.leaders-quote.is-off {
+    display: none;
+}
+
+.leaders-card figcaption {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.leaders-photo,
+.leaders-initials {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    flex: none;
+}
+
+.leaders-photo {
+    object-fit: cover;
+}
+
+.leaders-initials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--blue-50);
+    color: var(--blue-700);
+    font-weight: 600;
+    font-size: 0.9375rem;
+}
+
+.leaders-person {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.leaders-name {
+    font-weight: 600;
+    color: var(--slate-800);
+    font-size: 0.9375rem;
+}
+
+.leaders-title {
+    font-size: 0.85rem;
+    color: var(--slate-500);
+}
+
+.leaders-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 0 24px;
+}
+
+.leaders-arrow,
+.leaders-play {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: white;
+    border: 1px solid var(--blue-200);
+    border-radius: var(--radius-full);
+    color: var(--blue-700);
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.leaders-arrow:hover,
+.leaders-play:hover {
+    background: var(--blue-100);
+    border-color: var(--blue-300);
+}
+
+.leaders-arrow svg,
+.leaders-play svg {
+    width: 18px;
+    height: 18px;
+}
+
+.leaders-play .leaders-icon-play {
+    display: none;
+}
+
+.leaders-play.is-paused .leaders-icon-pause {
+    display: none;
+}
+
+.leaders-play.is-paused .leaders-icon-play {
+    display: block;
+}
+
+.leaders-dots {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 6px;
+}
+
+.leaders-dot {
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.leaders-dot::before {
+    content: '';
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--blue-200);
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.leaders-dot.is-active::before {
+    background: var(--blue-600);
+    transform: scale(1.3);
+}
+
+.leaders-arrow:focus-visible,
+.leaders-play:focus-visible,
+.leaders-dot:focus-visible {
+    outline: 2px solid var(--blue-600);
+    outline-offset: 2px;
+}
+
+/* At 768px and under the carousel becomes a native swipe strip: no autoplay,
+   no transform, every quote readable */
+@media (max-width: 768px) {
+    #leaders {
+        padding: 28px 0 32px;
+    }
+
+    .leaders-viewport {
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: 0 16px;
+        scrollbar-width: none;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .leaders-viewport::-webkit-scrollbar {
+        display: none;
+    }
+
+    .leaders-track {
+        gap: 14px;
+        transform: none !important;
+        transition: none;
+    }
+
+    .leaders-card {
+        width: 85vw;
+        max-width: 360px;
+        scroll-snap-align: center;
+        opacity: 1;
+        transform: none;
+    }
+
+    .leaders-card figure {
+        min-height: 344px;
+    }
+
+    .leaders-card:not(.is-active) .leaders-quote:not(.is-off) {
+        display: block;
+        overflow: visible;
+    }
+
+    .leaders-arrow,
+    .leaders-play {
+        display: none;
+    }
+}
+
+/* Reduced motion at any width: the same static strip, but the buttons stay
+   and scroll the viewport instead of moving a transform */
+@media (prefers-reduced-motion: reduce) {
+    .leaders-viewport {
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        padding: 0 16px;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .leaders-track {
+        transform: none !important;
+        transition: none;
+    }
+
+    .leaders-card {
+        scroll-snap-align: center;
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .leaders-card figure {
+        transition: none;
+    }
+
+    .leaders-card:not(.is-active) .leaders-quote:not(.is-off) {
+        display: block;
+        overflow: visible;
+    }
+}
+
+/* ===== WHO MADE IT ===== */
+#founders .section-title {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.founders-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+.founders-photo,
+.founders-initials {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.founders-photo {
+    object-fit: cover;
+}
+
+.founders-initials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--blue-50);
+    color: var(--blue-700);
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+#founders h3 {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--blue-900);
+    margin-bottom: 8px;
+}
+
+.founders-role {
+    font-size: 0.9375rem;
+    color: var(--slate-500);
+    margin-bottom: 16px;
+}
+
+.founders-blurb {
+    color: var(--slate-600);
+    line-height: 1.7;
+}
+
+.founders-close {
+    text-align: center;
+    margin-top: 48px;
+    color: var(--slate-700);
+    font-weight: 500;
+}
+
+@media (min-width: 769px) {
+    .founders-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 56px;
+    }
+}
+
     </style>
 <script>
 (function() {
@@ -1973,17 +2334,163 @@ body.team-modal-locked {
         </div>
     </section>
 
+    <!-- TESTIMONIALS -->
+    <section id="leaders" aria-roledescription="carousel" aria-labelledby="leaders-heading">
+        <h2 id="leaders-heading">What leaders say</h2>
+        <div class="leaders-viewport">
+            <ul class="leaders-track">
+                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="1 of 9">
+                    <figure>
+                        <blockquote class="leaders-quote">It's been designed to be kind by telling the truth, rather than saying what you want to hear or giving the easy answer; an invaluable trait, in both people and products.</blockquote>
+                        <blockquote class="leaders-quote is-off">This was a real acid test of the Leadership Companion for me, especially as it was backed up with solid advice on how I could get the accurate answer, and a benchmark for other tools.</blockquote>
+                        <figcaption>
+                            <img class="leaders-photo" src="/img/people/maria.jpg" alt="Maria Clarkin" width="44" height="44" loading="lazy">
+                            <span class="leaders-person">
+                                <span class="leaders-name">Maria Clarkin</span>
+                                <span class="leaders-title">Director</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="2 of 9">
+                    <figure>
+                        <blockquote class="leaders-quote">I put a genuinely challenging issue to the Leadership Companion and refined it over a few prompts. The guidance that came back was sharp enough to change how I handled it.</blockquote>
+                        <figcaption>
+                            <img class="leaders-photo" src="/img/people/giles.jpg" alt="Giles Bourne" width="44" height="44" loading="lazy">
+                            <span class="leaders-person">
+                                <span class="leaders-name">Giles Bourne</span>
+                                <span class="leaders-title">Executive Director and Co-Founder</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="3 of 9">
+                    <figure>
+                        <blockquote class="leaders-quote">Leadership companion does NOT give you answers; it asks questions, it follows up so you have YOUR clarity and accountability.</blockquote>
+                        <figcaption>
+                            <img class="leaders-photo" src="/img/people/magali.jpg" alt="Dr Magali Azema-Barac" width="44" height="44" loading="lazy">
+                            <span class="leaders-person">
+                                <span class="leaders-name">Dr Magali Azema-Barac</span>
+                                <span class="leaders-title">AI &amp; Technology Group Chair</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="4 of 9">
+                    <figure>
+                        <blockquote class="leaders-quote">It's not co-pilot, it's not Claude, it's none of those things. It's something more questioning and with the bias to action. It helps me talk through and think through ideas.</blockquote>
+                        <blockquote class="leaders-quote is-off">Leadership Companion sits next to a leader, asks better questions instead of handing down answers, and pushes toward a decision rather than letting someone sit in the analysis.</blockquote>
+                        <figcaption>
+                            <img class="leaders-photo" src="/img/people/bradley.jpg" alt="Bradley Busch" width="44" height="44" loading="lazy">
+                            <span class="leaders-person">
+                                <span class="leaders-name">Bradley Busch</span>
+                                <span class="leaders-title">Cyber Security Manager</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="5 of 9">
+                    <figure>
+                        <blockquote class="leaders-quote">Very intuitive, relevant responses and questions, moving the analysis and conversation forward. It also nicely connects and bridges previous sessions.</blockquote>
+                        <figcaption>
+                            <span class="leaders-initials" aria-hidden="true">JN</span>
+                            <span class="leaders-person">
+                                <span class="leaders-name">Jaana Nyfjord</span>
+                                <span class="leaders-title">Chair of the Board of Directors</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="6 of 9">
+                    <figure>
+                        <blockquote class="leaders-quote">The Leadership Companion goes beneath the surface of what is said and done to reveal the motivations and behavioural patterns driving it.</blockquote>
+                        <figcaption>
+                            <img class="leaders-photo" src="/img/people/adelle.jpg" alt="Adelle Howse" width="44" height="44" loading="lazy">
+                            <span class="leaders-person">
+                                <span class="leaders-name">Adelle Howse</span>
+                                <span class="leaders-title">Chair of the Board of Directors</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="7 of 9">
+                    <figure>
+                        <blockquote class="leaders-quote">It shocked me how it is able to see through the noise and finds kernels of insight and real wisdom.</blockquote>
+                        <blockquote class="leaders-quote is-off">On the whole, it is refreshingly different from all the other tools I have used, the strong outcome / change focus is unique and the ability to hold me accountable to my future self.</blockquote>
+                        <figcaption>
+                            <img class="leaders-photo" src="/img/people/carl.jpg" alt="Carl Walker" width="44" height="44" loading="lazy">
+                            <span class="leaders-person">
+                                <span class="leaders-name">Carl Walker</span>
+                                <span class="leaders-title">Senior Mechanical Design Engineer</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="8 of 9">
+                    <figure>
+                        <blockquote class="leaders-quote">The leadership companion has been great for me to challenge me when I am stuck and support me when things are hard.</blockquote>
+                        <blockquote class="leaders-quote is-off">I would recommend it to anyone who manages people, who cares about fostering successful relationships in all aspects of their life and wants to go on a journey to understand and find light bulb moments - not just get spoon fed an answer from the ether like it can feel like with other AI tools.</blockquote>
+                        <figcaption>
+                            <img class="leaders-photo" src="/img/people/alison.jpg" alt="Alison Crealy" width="44" height="44" loading="lazy">
+                            <span class="leaders-person">
+                                <span class="leaders-name">Alison Crealy</span>
+                                <span class="leaders-title">COO</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="9 of 9">
+                    <figure>
+                        <blockquote class="leaders-quote">When building a company, you often need to make important decisions quickly and with limited information. Leadership Companion helps us structure our thinking and look at challenges from different perspectives before we act.</blockquote>
+                        <blockquote class="leaders-quote is-off">Leadership Companion has added real value to our board work. It helps us ask better questions, evaluate different options, and bring more structure to our strategic discussions.</blockquote>
+                        <blockquote class="leaders-quote is-off">I use Leadership Companion to prepare for important sales meetings, from strategy and positioning to arguments and next steps. It helps me enter every conversation better prepared and more confident.</blockquote>
+                        <figcaption>
+                            <img class="leaders-photo" src="/img/people/robin.jpg" alt="Robin" width="44" height="44" loading="lazy">
+                            <span class="leaders-person">
+                                <span class="leaders-name">Robin</span>
+                                <span class="leaders-title">CEO</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                </li>
+            </ul>
+        </div>
+        <div class="leaders-controls">
+            <button type="button" class="leaders-arrow" data-leaders-prev aria-label="Previous testimonial">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class="leaders-play" data-leaders-toggle aria-label="Pause testimonials" aria-pressed="true">
+                <svg class="leaders-icon-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+                <svg class="leaders-icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l11 7-11 7z"/></svg>
+            </button>
+            <button type="button" class="leaders-arrow" data-leaders-next aria-label="Next testimonial">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+            <div class="leaders-dots">
+                    <button type="button" class="leaders-dot is-active" data-index="0" aria-label="Go to testimonial 1 of 9" aria-current="true"></button>
+                    <button type="button" class="leaders-dot" data-index="1" aria-label="Go to testimonial 2 of 9"></button>
+                    <button type="button" class="leaders-dot" data-index="2" aria-label="Go to testimonial 3 of 9"></button>
+                    <button type="button" class="leaders-dot" data-index="3" aria-label="Go to testimonial 4 of 9"></button>
+                    <button type="button" class="leaders-dot" data-index="4" aria-label="Go to testimonial 5 of 9"></button>
+                    <button type="button" class="leaders-dot" data-index="5" aria-label="Go to testimonial 6 of 9"></button>
+                    <button type="button" class="leaders-dot" data-index="6" aria-label="Go to testimonial 7 of 9"></button>
+                    <button type="button" class="leaders-dot" data-index="7" aria-label="Go to testimonial 8 of 9"></button>
+                    <button type="button" class="leaders-dot" data-index="8" aria-label="Go to testimonial 9 of 9"></button>
+            </div>
+        </div>
+    </section>
+
     <section class="deep-content">
         <div class="deep-content-inner">
             <div class="deep-content-lead">
                 <div class="section-label">Why It Exists</div>
                 <h2>Built for leaders who make decisions <em>alone</em></h2>
                 <p class="deep-content-lead-text">
-                    Running a business means making hundreds of decisions with incomplete information. Should you hire that manager? Is it time to renegotiate that contract? How do you handle the conversation you have been putting off for three months? Leadership Companion is the thinking partner that holds all of it with you.
+                    Leading means making hundreds of decisions with incomplete information, most of them alone. Should you hire that manager? Is it time to renegotiate that contract? How do you handle the conversation you have been putting off for three months? Your companion holds all of it with you.
 
                 </p>
                 <div class="deep-content-highlight">
-                    "The advisor that never forgets, never judges, and never bills by the hour."
+                    "The companion that never forgets, never judges, and never bills by the hour."
                 </div>
             </div>
     
@@ -1995,7 +2502,7 @@ body.team-modal-locked {
                         </div>
                         <h3>Context that compounds</h3>
                     </div>
-                    <p>Most AI tools meet you fresh every time. Leadership Companion is different. It builds a living understanding of your business, your team, your challenges, and your goals across every conversation. The longer you work together, the more it knows. After three months, it starts surfacing patterns you probably would not have seen yourself.</p>
+                    <p>Most tools meet you fresh every time. Leadership Companion is different. It builds a living understanding of your business, your team, your challenges, and your goals across every conversation. The longer you work together, the more it knows. After three months, it starts surfacing patterns you probably would not have seen yourself.</p>
                 </div>
     
                 <div class="deep-block">
@@ -2006,7 +2513,7 @@ body.team-modal-locked {
                         <h3>How it works</h3>
                     </div>
                     <p>Talk through text or voice, just like messaging someone you trust. Ask about the pricing decision you have been sitting on, the hire you are unsure about, the conversation you keep avoiding. Leadership Companion draws on behavioural science and proven business frameworks to help you think clearly - not just answer quickly.</p>
-                    <p>Between conversations, it keeps working. It tracks the decisions you made, follows up on the commitments you set, and sends insights before your next session via email or SMS if you want it to. It does not wait to be asked. It shows up.</p>
+                    <p>Between conversations, it keeps working. It tracks the decisions you made, follows up on the commitments you set, and sends insights before your next session by email if you want it to. It does not wait to be asked. It shows up.</p>
                 </div>
     
                 <div class="deep-block">
@@ -2016,64 +2523,7 @@ body.team-modal-locked {
                         </div>
                         <h3>Who it is for</h3>
                     </div>
-                    <p>For leaders who want a solution that genuinely understands them. Whether you are running a trade business, a professional services firm, a startup, or a large team - if you lead people and carry decisions, this is built for you.</p>
-                    <div class="deep-audience-tags">
-                        <span class="deep-audience-tag">
-                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                            Business Leaders
-                        </span>
-                        <span class="deep-audience-tag">
-                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                            Founders
-                        </span>
-                        <span class="deep-audience-tag">
-                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                            Managing Directors
-                        </span>
-                        <span class="deep-audience-tag">
-                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                            Senior Leaders
-                        </span>
-                        <span class="deep-audience-tag">
-                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                            Trade Businesses
-                        </span>
-                        <span class="deep-audience-tag">
-                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                            Professional Services
-                        </span>
-                        <span class="deep-audience-tag">
-                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                            Startups
-                        </span>
-                        <span class="deep-audience-tag">
-                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                            Retail
-                        </span>
-                        <span class="deep-audience-tag">
-                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                            Agency Owners
-                        </span>                        <span class="deep-audience-tag">
-                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                            Consultants
-                        </span>                        <span class="deep-audience-tag">
-                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                            Construction
-                        </span>                        <span class="deep-audience-tag">
-                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                            Healthcare Practices
-                        </span>                        <span class="deep-audience-tag">
-                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                            Family Business
-                        </span>                        <span class="deep-audience-tag">
-                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                            Executive Leaders 
-                        </span>                        
-                        <span class="deep-audience-tag">
-                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                            People wanting to get promoted
-                        </span>
-                    </div>
+                    <p>For the leader everyone relies on. Founders, executives, managing directors, the person the decision lands on. If you decide alone, this is built for you.</p>
                 </div>
             </div>
         </div>
@@ -2084,8 +2534,8 @@ body.team-modal-locked {
         <div class="features-inner">
             <div class="features-header">
                 <div class="section-label">How It Works</div>
-                <h2>More than a chatbot. A companion that grows with you.</h2>
-                <p class="features-sub">Think of it as a private secure advisor who's available at 4am when you can't sleep, remembers what you said three months ago, and follows up when you don't.</p>
+                <h2>A companion that grows with you.</h2>
+                <p class="features-sub">Private, available at 4am when you can't sleep, remembers what you said three months ago, and follows up when you don't.</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
@@ -2100,28 +2550,28 @@ body.team-modal-locked {
                         <svg viewBox="0 0 24 24" fill="none"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" fill="none"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" fill="none"/></svg>
                     </div>
                     <h3>22 Knowledge Bricks</h3>
-                    <p>Deep, practical guidance across leadership, cash flow, pricing, hiring, team culture, strategy, resilience, and more. Organised into five pillars with industry-specific overlays. Decision Mastery is always active.</p>
+                    <p>Deep, practical guidance across leadership, cash flow, pricing, hiring, team culture, strategy, resilience, and more. Organised into five pillars. Decision Mastery is always active.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" fill="none"/><path d="M13.73 21a2 2 0 0 1-3.46 0" fill="none"/></svg>
                     </div>
                     <h3>It Works While You Sleep</h3>
-                    <p>Monday morning focus emails. Friday reflections. Follow-ups on the commitments you made. Sends it via email or text messages, your choice. It doesn't wait to be opened, it reaches out with the right nudge at the right moment.</p>
+                    <p>Monday morning focus emails. Friday reflections. Follow-ups on the commitments you made. It doesn't wait to be opened, it reaches out with the right nudge at the right moment.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" fill="none"/><polyline points="22 4 12 14.01 9 11.01" fill="none"/></svg>
                     </div>
                     <h3>Decision Journal & Growth Tracking</h3>
-                    <p>Every decision is captured automatically, options, choice, confidence, reasoning. Quarterly reviews show not just what happened, but how you've evolved as a leader. Real evidence of ROI.</p>
+                    <p>Every decision is captured automatically, options, choice, confidence, reasoning.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" fill="none"/><path d="M19 10v2a7 7 0 0 1-14 0v-2" fill="none"/><line x1="12" y1="19" x2="12" y2="23" fill="none"/><line x1="8" y1="23" x2="16" y2="23" fill="none"/></svg>
                     </div>
                     <h3>Voice & File Uploads</h3>
-                    <p>Talk naturally, speak your thoughts and the AI transcribes and responds. Drop in contracts, spreadsheets, or documents and get them woven into the conversation. Available on Pro.</p>
+                    <p>Talk naturally, speak your thoughts and your companion listens and responds. Drop in contracts, spreadsheets, or documents and get them woven into the conversation. Available on Pro.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -2140,7 +2590,7 @@ body.team-modal-locked {
         <div class="section-header">
             <div class="section-label">Core Modules</div>
             <h2 class="section-title">Everything you need to lead confidently</h2>
-            <p class="section-desc">Six specialized modules that work together to support every aspect of running your business. Additional modules become available as we build them out.</p>
+            <p class="section-desc">Six specialised modules that work together to support every aspect of leading, the business and yourself.</p>
         </div>
         <div class="modules-grid">
             <div class="module-card">
@@ -2232,7 +2682,7 @@ body.team-modal-locked {
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        Unlimited conversations
+                        Conversations by text, whenever you need them
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -2264,11 +2714,11 @@ body.team-modal-locked {
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        Voice conversations directly with the Leadership Companion
+                        Say it out loud and your companion listens and answers
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        Upload files and documents to the AI to use in your conversations
+                        Bring your contracts, numbers and documents into the conversation
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -2314,6 +2764,26 @@ body.team-modal-locked {
         </div>
     </section>
 
+    <!-- WHO MADE IT -->
+    <section id="founders">
+        <h2 class="section-title">Who made it</h2>
+        <div class="founders-grid">
+            <div class="founders-person">
+                <img class="founders-photo" src="/img/people/kristina-rivers.jpg" alt="Kristina Rivers" width="120" height="120" loading="lazy">
+                <h3>Kristina Rivers</h3>
+                <p class="founders-role">Psychologist. Twenty-five years with leaders in government, enterprise and small business around the world.</p>
+                <p class="founders-blurb">Kristina wrote the way your companion speaks. What it listens for in you, the strength before the story, the belief that holds when yours does not, is what she has spent her career finding in leaders and what she built here first for herself. Masters in Educational Psychology, University of Sydney. HeartMath practitioner. Clarity4D business partner. Co-author of a book from interviews with 50 CEOs and board members, out soon.</p>
+            </div>
+            <div class="founders-person">
+                <img class="founders-photo" src="/img/people/tobias-byron.jpg" alt="Tobias Byron" width="120" height="120" loading="lazy">
+                <h3>Tobias Byron</h3>
+                <p class="founders-role">Engineer and AI architect. Working with AI systems since 1996.</p>
+                <p class="founders-blurb">Tobias designed and built everything that makes your companion run, remember and stay private. He is ex Amazon Web Services C-suite and a McKinsey expert, and held very senior roles at Macquarie and CBA before this, trained at KTH Royal Institute of Technology in Sweden. He has worked in more than 30 countries across 15 industries. He knows what a hard stretch is like with only a general approach or tool to think with, and he loves helping leaders through those stretches. That is why he does this.</p>
+            </div>
+        </div>
+        <p class="founders-close">They come from different worlds and argue without ego. Both use it every day.</p>
+    </section>
+
     <!-- FAQ -->
     <section id="faq" class="faq-section reveal">
         <div class="faq-inner">
@@ -2338,7 +2808,7 @@ body.team-modal-locked {
                         <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">Starter ($29/month) includes full text-based conversation, complete memory across all sessions, all specialist knowledge areas, Monday morning focus messages, Friday reflections, and decision tracking and follow-ups for your first three weeks. Pro ($49/month) adds voice conversation, file uploads (drop in contracts, P&Ls, spreadsheets for in-conversation analysis), persistent decision tracking and follow-ups that continue beyond three weeks, pattern recognition across sessions, and quarterly leadership reviews that show how you have developed over time. Both plans include the full depth of the companion's behavioural science. Both get the Monday and Friday messages. Both get the complete memory system. Team gives every leader on your team the full Pro experience, with volume pricing, one invoice, and guided onboarding for the group.</div>
+                        <div class="faq-answer-inner">Starter ($29/month) includes full text-based conversation, complete memory across all sessions, all specialist knowledge areas, Monday morning focus messages, Friday reflections, and decision tracking and follow-ups for your first three weeks. Pro ($49/month) adds voice conversation, file uploads (drop in contracts, P&Ls, spreadsheets for in-conversation analysis), persistent decision tracking and follow-ups that continue beyond three weeks, and pattern recognition across sessions. Both plans include the full depth of the companion's behavioural science. Both get the Monday and Friday messages. Both get the complete memory system. Team gives every leader on your team the full Pro experience, with volume pricing, one invoice, and guided onboarding for the group.</div>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -2365,7 +2835,7 @@ body.team-modal-locked {
                         <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">Yes. The Team plan gives every leader their own full Pro companion, with volume pricing from three seats and a single invoice for your organisation. One thing matters here more than anything: each leader's conversations remain completely private. Your company pays for the seats, but nobody in the business, and nobody at Leadership Companion, can read what any individual shares with their companion. That privacy is exactly what makes leaders actually use it.</div>
+                        <div class="faq-answer-inner">Yes. The Team plan gives every leader their own full Pro companion, with volume pricing from three seats and a single invoice for your organisation. One thing matters here more than anything: each leader's conversations remain completely private. Your company pays for the seats, but nobody in the business can read what any individual shares with their companion. That privacy is exactly what makes leaders actually use it.</div>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -2383,7 +2853,7 @@ body.team-modal-locked {
                         <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">Nobody. Your conversations are private by design. The architecture is built so that no one at Leadership Companion, including the founders, can access the content of what you share. Leaders share things in private that they cannot share anywhere else. That safety is structural, built into the architecture from day one. Everything is encrypted at rest and in transit. This holds on the Team plan too. If your company pays for your seat, your employer still cannot see your conversations.</div>
+                        <div class="faq-answer-inner">Your conversations are private by design. Access to our systems is limited by design. No one at your organisation can access them. Leaders share things in private that they cannot share anywhere else. Everything is encrypted at rest and in transit. This holds on the Team plan too. If your company pays for your seat, your employer still cannot see your conversations.</div>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -2405,8 +2875,8 @@ body.team-modal-locked {
     <!-- FINAL CTA -->
     <section id="founding-members" class="founding-section">
         <div class="founding-content">
-            <h2>Ready to lead with clarity?</h2>
-            <p>Choose your plan and start your first conversation today.</p>
+            <h2>Bring the one decision you have not said out loud to anyone yet.</h2>
+            <p>Start your first conversation today.</p>
 
             <div class="founding-options">
                 <div class="founding-card">
@@ -2527,6 +2997,242 @@ body.team-modal-locked {
             options.forEach(option => {
                 option.addEventListener('click', () => setBilling(option.dataset.billing));
             });
+        })();
+
+        // Testimonial carousel. Fails silently if the section is not on the page.
+        (function () {
+            const section = document.getElementById('leaders');
+            if (!section) return;
+
+            const viewport = section.querySelector('.leaders-viewport');
+            const track = section.querySelector('.leaders-track');
+            const cards = Array.prototype.slice.call(section.querySelectorAll('.leaders-card'));
+            const dots = Array.prototype.slice.call(section.querySelectorAll('.leaders-dot'));
+            const controls = section.querySelector('.leaders-controls');
+            const prevBtn = section.querySelector('[data-leaders-prev]');
+            const nextBtn = section.querySelector('[data-leaders-next]');
+            const toggleBtn = section.querySelector('[data-leaders-toggle]');
+            if (!viewport || !track || cards.length === 0) return;
+
+            const STEP_MS = 7000;
+            const narrow = window.matchMedia('(max-width: 768px)');
+            const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+            // Static mode is the swipe strip: no autoplay, no transform, and no
+            // quote rotation, so what a reader is part way through never moves
+            function isStatic() {
+                return narrow.matches || reduced.matches;
+            }
+
+            let active = cards.length > 1 ? 1 : 0;
+            let timer = null;
+            const paused = { hover: false, focus: false, offscreen: false, user: false };
+
+            // Each card holds every one of that person's quotes and starts on the
+            // first one listed, so the opening pass reads the same every visit. A
+            // card moves to its next quote when it stops being active, so a second
+            // quote is first seen on the second loop.
+            const quoteState = cards.map(function (card) {
+                const quotes = Array.prototype.slice.call(card.querySelectorAll('.leaders-quote'));
+                quotes.forEach(function (q, i) {
+                    q.classList.toggle('is-off', i !== 0);
+                });
+                return { quotes: quotes, index: 0 };
+            });
+
+            function rotateQuote(cardIndex) {
+                const state = quoteState[cardIndex];
+                if (!state || state.quotes.length < 2) return;
+                state.quotes[state.index].classList.add('is-off');
+                state.index = (state.index + 1) % state.quotes.length;
+                state.quotes[state.index].classList.remove('is-off');
+            }
+
+            // Computed rather than hardcoded, so it survives any card width
+            function position(instant) {
+                if (isStatic()) return;
+                const card = cards[active];
+                if (!card) return;
+                const offset = viewport.clientWidth / 2 - (card.offsetLeft + card.offsetWidth / 2);
+                if (instant) {
+                    track.style.transition = 'none';
+                    track.style.transform = 'translateX(' + offset + 'px)';
+                    void track.offsetWidth;
+                    track.style.transition = '';
+                    return;
+                }
+                track.style.transform = 'translateX(' + offset + 'px)';
+            }
+
+            function paint() {
+                cards.forEach(function (card, i) {
+                    card.classList.toggle('is-active', i === active);
+                });
+                dots.forEach(function (dot, i) {
+                    const on = i === active;
+                    dot.classList.toggle('is-active', on);
+                    if (on) {
+                        dot.setAttribute('aria-current', 'true');
+                    } else {
+                        dot.removeAttribute('aria-current');
+                    }
+                });
+            }
+
+            function goTo(next, opts) {
+                const options = opts || {};
+                const from = active;
+                const target = (next + cards.length) % cards.length;
+                if (target === from) return;
+
+                // The card that is losing focus moves to its next quote while it
+                // is dimmed and clipped, never while someone is reading it
+                if (!isStatic()) rotateQuote(from);
+
+                // Wrapping from the last card back to the first jumps rather than
+                // sliding all the way back
+                const wrapping = options.wrap === true || (from === cards.length - 1 && target === 0);
+
+                active = target;
+                paint();
+
+                if (isStatic()) {
+                    scrollToActive();
+                } else {
+                    position(wrapping);
+                }
+            }
+
+            function scrollToActive() {
+                const card = cards[active];
+                if (!card) return;
+                const left = card.offsetLeft - (viewport.clientWidth - card.offsetWidth) / 2;
+                if (typeof viewport.scrollTo === 'function') {
+                    viewport.scrollTo({ left: left, behavior: reduced.matches ? 'auto' : 'smooth' });
+                } else {
+                    viewport.scrollLeft = left;
+                }
+            }
+
+            function playing() {
+                return !paused.hover && !paused.focus && !paused.offscreen && !paused.user;
+            }
+
+            function stopTimer() {
+                if (timer) {
+                    window.clearInterval(timer);
+                    timer = null;
+                }
+            }
+
+            function syncTimer() {
+                stopTimer();
+                if (isStatic() || !playing()) return;
+                timer = window.setInterval(function () {
+                    goTo(active + 1);
+                }, STEP_MS);
+            }
+
+            function setPause(reason, value) {
+                paused[reason] = value;
+                syncTimer();
+            }
+
+            // Any manual control restarts the clock, so a card the reader just
+            // chose gets a full interval
+            function manual(fn) {
+                fn();
+                syncTimer();
+            }
+
+            if (prevBtn) prevBtn.addEventListener('click', function () { manual(function () { goTo(active - 1); }); });
+            if (nextBtn) nextBtn.addEventListener('click', function () { manual(function () { goTo(active + 1); }); });
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', function () {
+                    paused.user = !paused.user;
+                    toggleBtn.classList.toggle('is-paused', paused.user);
+                    toggleBtn.setAttribute('aria-pressed', paused.user ? 'false' : 'true');
+                    toggleBtn.setAttribute('aria-label', paused.user ? 'Play testimonials' : 'Pause testimonials');
+                    syncTimer();
+                });
+            }
+
+            dots.forEach(function (dot, i) {
+                dot.addEventListener('click', function () { manual(function () { goTo(i); }); });
+            });
+
+            if (controls) {
+                controls.addEventListener('keydown', function (event) {
+                    if (event.key === 'ArrowLeft') {
+                        event.preventDefault();
+                        manual(function () { goTo(active - 1); });
+                    } else if (event.key === 'ArrowRight') {
+                        event.preventDefault();
+                        manual(function () { goTo(active + 1); });
+                    }
+                });
+            }
+
+            section.addEventListener('mouseenter', function () { setPause('hover', true); });
+            section.addEventListener('mouseleave', function () { setPause('hover', false); });
+            section.addEventListener('focusin', function () { setPause('focus', true); });
+            section.addEventListener('focusout', function () { setPause('focus', false); });
+
+            if (typeof window.IntersectionObserver === 'function') {
+                const watcher = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        setPause('offscreen', !entry.isIntersecting);
+                    });
+                }, { threshold: 0.2 });
+                watcher.observe(section);
+            }
+
+            // In the swipe strip the dots follow the scroll position
+            let scrollTick = null;
+            viewport.addEventListener('scroll', function () {
+                if (!isStatic() || scrollTick) return;
+                scrollTick = window.requestAnimationFrame(function () {
+                    scrollTick = null;
+                    const centre = viewport.scrollLeft + viewport.clientWidth / 2;
+                    let nearest = 0;
+                    let best = Infinity;
+                    cards.forEach(function (card, i) {
+                        const distance = Math.abs(card.offsetLeft + card.offsetWidth / 2 - centre);
+                        if (distance < best) {
+                            best = distance;
+                            nearest = i;
+                        }
+                    });
+                    if (nearest !== active) {
+                        active = nearest;
+                        paint();
+                    }
+                });
+            });
+
+            let resizeTimer = null;
+            window.addEventListener('resize', function () {
+                window.clearTimeout(resizeTimer);
+                resizeTimer = window.setTimeout(function () {
+                    if (isStatic()) {
+                        track.style.transform = '';
+                    } else {
+                        position(true);
+                    }
+                    syncTimer();
+                }, 150);
+            });
+
+            // Web fonts change the card metrics, so the offset is recomputed once
+            // they are in
+            if (document.fonts && document.fonts.ready && typeof document.fonts.ready.then === 'function') {
+                document.fonts.ready.then(function () { position(true); });
+            }
+
+            paint();
+            position(true);
+            syncTimer();
         })();
     </script>
 
