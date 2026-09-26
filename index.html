@@ -940,6 +940,7 @@
             background: var(--blue-600);
             color: white;
             font-family: var(--font-body);
+            line-height: 1.6;
             padding: 10px 28px;
             border-radius: var(--radius-full);
             font-size: 1rem;
@@ -957,62 +958,27 @@
             box-shadow: 0 4px 12px rgba(42, 111, 196, 0.3);
         }
 
-        .pricing-card.dark {
-            background: linear-gradient(135deg, var(--blue-900), var(--blue-950));
-            border-color: var(--blue-950);
-            color: var(--blue-100);
+        .pricing-cta-outline {
+            background: transparent;
+            color: var(--blue-600);
+            border: 2px solid var(--blue-600);
+            padding: 8px 26px;
         }
 
-        .pricing-card.dark h3 {
+        .pricing-cta-outline:hover {
+            background: var(--blue-600);
             color: white;
-        }
-
-        .pricing-card.dark .pricing-price {
-            color: white;
-        }
-
-        .pricing-card.dark .pricing-period {
-            color: var(--blue-200);
-        }
-
-        .pricing-card.dark .pricing-features li {
-            color: var(--blue-100);
-        }
-
-        .pricing-card.dark .pricing-features svg {
-            stroke: var(--blue-300);
-        }
-
-        .pricing-card.dark .pricing-cta {
-            background: var(--warm-50);
-            color: var(--blue-900);
-        }
-
-        .pricing-card.dark .pricing-cta:hover {
-            background: white;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         /* ===== FOUNDING MEMBERS CTA ===== */
         .founding-section {
-            background: linear-gradient(135deg, var(--blue-800), var(--blue-900));
-            color: white;
+            background: var(--blue-50);
+            border-top: 1px solid var(--slate-200);
             border-radius: var(--radius-lg);
             padding: 60px 40px;
             text-align: center;
             position: relative;
             overflow: hidden;
-        }
-
-        .founding-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            pointer-events: none;
         }
 
         .founding-content {
@@ -1042,11 +1008,12 @@
             font-weight: 600;
             margin-bottom: 16px;
             letter-spacing: -0.02em;
+            color: var(--blue-900);
         }
 
         .founding-section p {
             font-size: 1.125rem;
-            opacity: 0.9;
+            color: var(--slate-600);
             margin-bottom: 32px;
         }
 
@@ -1084,114 +1051,11 @@
             font-size: 1rem;
         }
 
-        .founding-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px;
-            margin-top: 8px;
-            align-items: stretch;
-        }
-
-        .founding-card {
-            position: relative;
-            background: white;
-            color: var(--slate-800);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--radius-lg);
-            padding: 36px 28px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .founding-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
-        }
-
-        .founding-card.featured {
-            border-color: var(--warm-400);
-            box-shadow: 0 18px 44px rgba(0, 0, 0, 0.3);
-        }
-
-        .founding-card.featured:hover {
-            transform: translateY(-3px);
-        }
-
-        .founding-card-badge {
-            position: absolute;
-            top: -14px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--warm-400);
-            color: var(--blue-900);
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            padding: 6px 14px;
-            border-radius: var(--radius-full);
-            white-space: nowrap;
-        }
-
-        .founding-card h3 {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--blue-900);
-            margin: 0 0 12px;
-            letter-spacing: -0.01em;
-        }
-
-        .founding-card-price {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--blue-700);
-            line-height: 1;
-            margin: 12px 0 6px;
-        }
-
-        .founding-card-price .currency {
-            font-size: 1.5rem;
-            vertical-align: super;
-            font-weight: 700;
-        }
-
-        .founding-card-price .founding-card-period {
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--slate-500);
-            margin-left: 4px;
-        }
-
         .founding-card-desc {
             font-size: 0.9375rem;
             color: var(--slate-500);
             margin: 0 0 28px;
             opacity: 1;
-        }
-
-        .founding-card-cta {
-            display: block;
-            width: 100%;
-            margin-top: auto;
-            background: var(--blue-600);
-            color: white;
-            padding: 14px 24px;
-            border-radius: var(--radius-full);
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            text-align: center;
-            transition: all 0.25s ease;
-        }
-
-        .founding-card-cta:hover {
-            background: var(--blue-700);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(42, 111, 196, 0.35);
         }
 
         .founding-form {
@@ -1390,10 +1254,6 @@
 
             .modules-grid,
             .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .founding-options {
                 grid-template-columns: 1fr;
             }
 
@@ -1681,30 +1541,6 @@
 }
 
 /* ===== TEAM ENQUIRY MODAL ===== */
-.team-cta-line {
-    margin-top: 28px;
-    text-align: center;
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.85);
-}
-
-.team-cta-link {
-    background: none;
-    border: none;
-    padding: 0;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: 600;
-    color: white;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    cursor: pointer;
-}
-
-.team-cta-link:hover {
-    color: var(--blue-200);
-}
-
 .team-modal {
     position: fixed;
     inset: 0;
@@ -2727,7 +2563,7 @@ body.team-modal-locked {
                 </ul>
                 <a href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dpro" class="pricing-cta" data-monthly-href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dpro" data-annual-href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dpro_annual">Get Started</a>
             </div>
-            <div class="pricing-card dark">
+            <div class="pricing-card">
                 <h3>Team</h3>
                 <div class="pricing-price">
                     Custom
@@ -2759,7 +2595,7 @@ body.team-modal-locked {
                         We will plant a tree per seat every month
                     </li>
                 </ul>
-                <button type="button" class="pricing-cta" data-open-team-form>Talk to us</button>
+                <button type="button" class="pricing-cta pricing-cta-outline" data-open-team-form>Talk to us</button>
             </div>
         </div>
     </section>
@@ -2878,21 +2714,10 @@ body.team-modal-locked {
             <h2>Bring the one decision you have not said out loud to anyone yet.</h2>
             <p>Start your first conversation today.</p>
 
-            <div class="founding-options">
-                <div class="founding-card">
-                    <h3>Starter</h3>
-                    <div class="founding-card-price"><span class="currency">$</span><span class="founding-card-amount" data-monthly="29" data-annual="24">29</span><span class="founding-card-period">/mo</span></div>
-                    <a href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dstarter" class="founding-card-cta" data-monthly-href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dstarter" data-annual-href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dstarter_annual">Get Started</a>
-                </div>
-                <div class="founding-card featured">
-                    <div class="founding-card-badge">Recommended</div>
-                    <h3>Pro</h3>
-                    <div class="founding-card-price"><span class="currency">$</span><span class="founding-card-amount" data-monthly="49" data-annual="40">49</span><span class="founding-card-period">/mo</span></div>
-                    <a href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dpro" class="founding-card-cta" data-monthly-href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dpro" data-annual-href="https://accounts.app.leadershipcompanion.co/sign-up?redirect_url=https%3A%2F%2Fapp.leadershipcompanion.co%2F%3Ftier%3Dpro_annual">Get Started</a>
-                </div>
-            </div>
-
-            <p class="team-cta-line">Rolling it out to your leadership team? <button type="button" class="team-cta-link" data-open-team-form>Talk to us</button></p>
+            <a href="#pricing" class="hero-cta">
+                Get started
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
         </div>
     </section>
 
@@ -2971,7 +2796,7 @@ body.team-modal-locked {
             if (!toggle || !grid) return;
 
             const options = toggle.querySelectorAll('[data-billing]');
-            const amounts = document.querySelectorAll('.price-amount, .founding-card-amount');
+            const amounts = document.querySelectorAll('.price-amount');
             const ctas = document.querySelectorAll('[data-monthly-href]');
 
             function setBilling(period) {
