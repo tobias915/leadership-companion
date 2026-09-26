@@ -2105,31 +2105,86 @@ body.team-modal-locked {
 
     </style>
 <script>
-(function() {
-  var params = new URLSearchParams(window.location.search);
-  var ref = params.get('ref');
-  if (ref && ref.startsWith('LC-')) {
-    try { localStorage.setItem('referralCode', ref); } catch(e) {}
+// Referral capture. Reads ?ref, keeps it for 30 days, and puts it inside the
+// encoded redirect_url of sign-up links only, so the log in link and every
+// other link stay clean. Exposed as window.lcReferral so the billing toggle can
+// re-apply the code whenever it swaps a CTA href. This block is identical on
+// index.html and faq/index.html: change one, change both.
+(function () {
+  var KEY = 'referralCode';
+  var PREFIX = 'LC-';
+  var MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000;
+
+  function remove() {
+    try { window.localStorage.removeItem(KEY); } catch (e) {}
   }
-  document.addEventListener('DOMContentLoaded', function() {
-    var stored;
-    try { stored = localStorage.getItem('referralCode'); } catch(e) {}
-    if (!stored) return;
-    document.querySelectorAll('a[href*="app.leadershipcompanion"]').forEach(function(a) {
-      try {
-        var url = new URL(a.href);
-        var redirect = url.searchParams.get('redirect_url');
-        if (redirect) {
-          // The sign-up portal drops parameters it does not recognise, so the
-          // code has to travel inside the encoded redirect_url to reach the app
-          var target = new URL(redirect);
-          target.searchParams.set('ref', stored);
-          url.searchParams.set('redirect_url', target.toString());
-        } else {
-          url.searchParams.set('ref', stored);
-        }
-        a.href = url.toString();
-      } catch (e) {}
+
+  function write(code) {
+    try { window.localStorage.setItem(KEY, JSON.stringify({ code: code, at: Date.now() })); } catch (e) {}
+  }
+
+  // Returns a live code, or null. A record past 30 days is treated as absent
+  // and cleared. A plain string from the earlier version is honoured rather
+  // than dropped: it is stamped now, so it expires 30 days from this read.
+  function read() {
+    var raw = null;
+    try { raw = window.localStorage.getItem(KEY); } catch (e) { return null; }
+    if (!raw) return null;
+
+    var record = null;
+    try { record = JSON.parse(raw); } catch (e) { record = null; }
+
+    if (record === null || typeof record === 'string') {
+      var legacy = typeof record === 'string' ? record : raw;
+      if (legacy.indexOf(PREFIX) !== 0) { remove(); return null; }
+      write(legacy);
+      return legacy;
+    }
+
+    if (typeof record.code !== 'string' || typeof record.at !== 'number') { remove(); return null; }
+    if (record.code.indexOf(PREFIX) !== 0) { remove(); return null; }
+    if (Date.now() - record.at > MAX_AGE_MS) { remove(); return null; }
+    return record.code;
+  }
+
+  // Only the hosted sign-up page qualifies, matched on the path rather than on
+  // any part of the domain, so a new link elsewhere on the app is never enrolled
+  function isSignUp(url) {
+    return /(^|\.)leadershipcompanion\.co$/.test(url.hostname) && url.pathname.indexOf('/sign-up') === 0;
+  }
+
+  function withCode(href, code) {
+    if (!href || !code) return href;
+    try {
+      var url = new URL(href, window.location.href);
+      if (!isSignUp(url)) return href;
+      var redirect = url.searchParams.get('redirect_url');
+      if (!redirect) return href;
+      var target = new URL(redirect);
+      target.searchParams.set('ref', code);
+      url.searchParams.set('redirect_url', target.toString());
+      return url.toString();
+    } catch (e) {
+      return href;
+    }
+  }
+
+  var incoming = null;
+  try { incoming = new URLSearchParams(window.location.search).get('ref'); } catch (e) {}
+  if (incoming && incoming.indexOf(PREFIX) === 0) write(incoming);
+
+  window.lcReferral = {
+    code: read,
+    apply: function (href) { return withCode(href, read()); }
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var code = read();
+    if (!code) return;
+    Array.prototype.forEach.call(document.querySelectorAll('a[href]'), function (a) {
+      var current = a.href;
+      var next = withCode(current, code);
+      if (next !== current) a.href = next;
     });
   });
 })();
@@ -2815,7 +2870,12 @@ body.team-modal-locked {
                 });
 
                 ctas.forEach(cta => {
-                    cta.href = yearly ? cta.dataset.annualHref : cta.dataset.monthlyHref;
+                    // Straight from the dataset would drop any referral code, so
+                    // the swap goes through the same append the capture script uses
+                    const href = yearly ? cta.dataset.annualHref : cta.dataset.monthlyHref;
+                    cta.href = window.lcReferral && typeof window.lcReferral.apply === 'function'
+                        ? window.lcReferral.apply(href)
+                        : href;
                 });
             }
 
