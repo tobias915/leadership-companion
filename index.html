@@ -1994,9 +1994,22 @@ body.team-modal-locked {
         overflow: visible;
     }
 
-    .leaders-arrow,
-    .leaders-play {
+    .leaders-arrow {
         display: none;
+    }
+
+    /* Swipe covers previous and next, but autoplay still needs a stop control,
+       so the toggle stays, at a 44px touch target and a stronger border than
+       the desktop one so it holds up against the blue band */
+    .leaders-play {
+        width: 44px;
+        height: 44px;
+        border-color: var(--blue-600);
+        color: var(--blue-700);
+    }
+
+    .leaders-dots {
+        margin-left: 0;
     }
 }
 
@@ -2899,7 +2912,8 @@ body.team-modal-locked {
             const toggleBtn = section.querySelector('[data-leaders-toggle]');
             if (!viewport || !track || cards.length === 0) return;
 
-            const STEP_MS = 7000;
+            const STEP_MS = 5000;
+            const RESUME_MS = 8000;
             const narrow = window.matchMedia('(max-width: 768px)');
             const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -2911,7 +2925,7 @@ body.team-modal-locked {
 
             let active = cards.length > 1 ? 1 : 0;
             let timer = null;
-            const paused = { hover: false, focus: false, offscreen: false, user: false };
+            const paused = { hover: false, focus: false, offscreen: false, user: false, interaction: false };
 
             // Each card holds every one of that person's quotes and starts on the
             // first one listed, so the opening pass reads the same every visit. A
@@ -2982,25 +2996,29 @@ body.team-modal-locked {
                 paint();
 
                 if (isStatic()) {
-                    scrollToActive();
+                    scrollToActive(wrapping);
                 } else {
                     position(wrapping);
                 }
             }
 
-            function scrollToActive() {
+            let selfScrollUntil = 0;
+            function scrollToActive(instant) {
                 const card = cards[active];
                 if (!card) return;
                 const left = card.offsetLeft - (viewport.clientWidth - card.offsetWidth) / 2;
-                if (typeof viewport.scrollTo === 'function') {
-                    viewport.scrollTo({ left: left, behavior: reduced.matches ? 'auto' : 'smooth' });
-                } else {
+                const smooth = !instant && !reduced.matches;
+                selfScrollUntil = Date.now() + (smooth ? 900 : 150);
+                try {
+                    viewport.scrollTo({ left: left, behavior: smooth ? 'smooth' : 'auto' });
+                } catch (error) {
+                    // Older Safari ignores the options object
                     viewport.scrollLeft = left;
                 }
             }
 
             function playing() {
-                return !paused.hover && !paused.focus && !paused.offscreen && !paused.user;
+                return !paused.hover && !paused.focus && !paused.offscreen && !paused.user && !paused.interaction;
             }
 
             function stopTimer() {
@@ -3012,7 +3030,7 @@ body.team-modal-locked {
 
             function syncTimer() {
                 stopTimer();
-                if (isStatic() || !playing()) return;
+                if (reduced.matches || !playing()) return;
                 timer = window.setInterval(function () {
                     goTo(active + 1);
                 }, STEP_MS);
@@ -3020,6 +3038,19 @@ body.team-modal-locked {
 
             function setPause(reason, value) {
                 paused[reason] = value;
+                syncTimer();
+            }
+
+            // A touch or a wheel gesture pauses autoplay, and it returns eight
+            // seconds after the last one, so a reader is never fought for control
+            let resumeTimer = null;
+            function noteInteraction() {
+                paused.interaction = true;
+                window.clearTimeout(resumeTimer);
+                resumeTimer = window.setTimeout(function () {
+                    paused.interaction = false;
+                    syncTimer();
+                }, RESUME_MS);
                 syncTimer();
             }
 
@@ -3036,6 +3067,9 @@ body.team-modal-locked {
             if (toggleBtn) {
                 toggleBtn.addEventListener('click', function () {
                     paused.user = !paused.user;
+                    // Pressing play is an explicit ask to resume, so the focus
+                    // pause held by the button itself must not sit on top of it
+                    if (!paused.user) paused.focus = false;
                     toggleBtn.classList.toggle('is-paused', paused.user);
                     toggleBtn.setAttribute('aria-pressed', paused.user ? 'false' : 'true');
                     toggleBtn.setAttribute('aria-label', paused.user ? 'Play testimonials' : 'Pause testimonials');
@@ -3059,7 +3093,16 @@ body.team-modal-locked {
                 });
             }
 
-            section.addEventListener('mouseenter', function () { setPause('hover', true); });
+            viewport.addEventListener('touchstart', noteInteraction, { passive: true });
+            viewport.addEventListener('wheel', noteInteraction, { passive: true });
+
+            // A tap on a touch screen also fires a compatibility mouseenter with
+            // no mouseleave behind it, which would latch the hover pause on and
+            // never let autoplay back. Only pause on hover where hover exists.
+            const canHover = window.matchMedia('(hover: hover)');
+            section.addEventListener('mouseenter', function () {
+                if (canHover.matches) setPause('hover', true);
+            });
             section.addEventListener('mouseleave', function () { setPause('hover', false); });
             section.addEventListener('focusin', function () { setPause('focus', true); });
             section.addEventListener('focusout', function () { setPause('focus', false); });
@@ -3079,6 +3122,7 @@ body.team-modal-locked {
                 if (!isStatic() || scrollTick) return;
                 scrollTick = window.requestAnimationFrame(function () {
                     scrollTick = null;
+                    if (Date.now() < selfScrollUntil) return;
                     const centre = viewport.scrollLeft + viewport.clientWidth / 2;
                     let nearest = 0;
                     let best = Infinity;
@@ -3095,6 +3139,23 @@ body.team-modal-locked {
                     }
                 });
             });
+
+            if (typeof window.IntersectionObserver === 'function') {
+                const seen = cards.map(function () { return false; });
+                const cardWatcher = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        const index = cards.indexOf(entry.target);
+                        if (index === -1) return;
+                        if (entry.isIntersecting) {
+                            seen[index] = true;
+                        } else if (seen[index]) {
+                            seen[index] = false;
+                            if (isStatic()) rotateQuote(index);
+                        }
+                    });
+                }, { root: viewport, threshold: 0 });
+                cards.forEach(function (card) { cardWatcher.observe(card); });
+            }
 
             let resizeTimer = null;
             window.addEventListener('resize', function () {
@@ -3114,6 +3175,11 @@ body.team-modal-locked {
             if (document.fonts && document.fonts.ready && typeof document.fonts.ready.then === 'function') {
                 document.fonts.ready.then(function () { position(true); });
             }
+
+            // The swipe strip opens unscrolled, so the first card is the active
+            // one there. The three up desktop layout opens on the second card so
+            // both flanks are filled.
+            if (isStatic()) active = 0;
 
             paint();
             position(true);
