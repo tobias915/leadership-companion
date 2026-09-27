@@ -470,23 +470,37 @@
             line-height: 1.1;
             font-weight: 600;
             color: var(--blue-900);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             letter-spacing: -0.03em;
+        }
+
+        /* The descriptive half of the headline sits under the brand at a
+           smaller size. A block rather than a <br>, so the gap is controllable. */
+        .hero h1 .hero-h1-line {
+            display: block;
+            font-size: 0.6em;
+            margin-top: 0.18em;
+            /* Keeps the two lines even instead of dropping a single word onto
+               a line of its own. Older browsers just wrap as usual. */
+            text-wrap: balance;
+            max-width: 22ch;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-lead {
             font-size: clamp(1.125rem, 2.5vw, 1.375rem);
             color: var(--slate-600);
-            margin-bottom: 32px;
-            line-height: 1.5;
+            margin-bottom: 20px;
+            line-height: 1.4;
         }
 
         .hero-close {
             font-size: clamp(1.125rem, 2.5vw, 1.375rem);
             color: var(--slate-900);
             font-weight: 500;
-            margin-bottom: 36px;
-            line-height: 1.5;
+            margin-bottom: 28px;
+            line-height: 1.4;
         }
 
         .hero-cta {
@@ -2227,7 +2241,7 @@ body.team-modal-locked {
     <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Leadership Companion<br>A private companion for the leader everyone relies on</h1>
+            <h1>Leadership Companion<span class="hero-h1-line">A private companion for the leader everyone relies on</span></h1>
             <p class="hero-lead">Leading means making hundreds of decisions with incomplete information, most of them alone. Should you hire that manager? Is it time to renegotiate that contract? How do you handle the conversation you have been putting off for three months? Your companion holds all of it with you.</p>
             <p class="hero-close">For the leader everyone relies on. Founders, executives, managing directors, the person the decision lands on. If you decide alone, this is built for you.</p>
             <a href="#pricing" class="hero-cta">
