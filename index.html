@@ -476,6 +476,14 @@
 
         /* The descriptive half of the headline sits under the brand at a
            smaller size. A block rather than a <br>, so the gap is controllable. */
+        .hero-close {
+            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+            color: var(--slate-900);
+            font-weight: 500;
+            margin-bottom: 28px;
+            line-height: 1.4;
+        }
+
         .hero h1 .hero-h1-line {
             display: block;
             font-size: 0.6em;
@@ -486,21 +494,6 @@
             max-width: 22ch;
             margin-left: auto;
             margin-right: auto;
-        }
-
-        .hero-lead {
-            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
-            color: var(--slate-600);
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-
-        .hero-close {
-            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
-            color: var(--slate-900);
-            font-weight: 500;
-            margin-bottom: 28px;
-            line-height: 1.4;
         }
 
         .hero-cta {
@@ -525,8 +518,9 @@
             box-shadow: 0 8px 24px rgba(42, 111, 196, 0.35);
         }
 
-        .hero-note {
-            margin-top: 12px;
+        .pricing-note {
+            margin-top: 24px;
+            text-align: center;
             font-size: 0.875rem;
             color: var(--slate-500);
         }
@@ -1248,10 +1242,6 @@
                 padding: 64px 20px 40px;
             }
 
-            .hero-lead {
-                font-size: clamp(1rem, 2.5vw, 1.375rem);
-            }
-
             section {
                 padding: 60px 20px;
             }
@@ -1777,7 +1767,7 @@ body.team-modal-locked {
 
 .leaders-card {
     list-style: none;
-    width: 360px;
+    width: 400px;
     flex: none;
     opacity: 0.4;
     transform: scale(0.92);
@@ -1788,7 +1778,7 @@ body.team-modal-locked {
    when the active card changes or a quote rotates */
 .leaders-card figure {
     height: 100%;
-    min-height: 320px;
+    min-height: 292px;
     background: white;
     border: 1px solid var(--slate-200);
     border-radius: var(--radius-lg);
@@ -1992,8 +1982,8 @@ body.team-modal-locked {
     }
 
     .leaders-card {
-        width: 85vw;
-        max-width: 360px;
+        width: 88vw;
+        max-width: 400px;
         scroll-snap-align: center;
         opacity: 1;
         transform: none;
@@ -2242,13 +2232,11 @@ body.team-modal-locked {
     <section class="hero">
         <div class="hero-content">
             <h1>Leadership Companion<span class="hero-h1-line">A private companion for the leader everyone relies on</span></h1>
-            <p class="hero-lead">Leading means making hundreds of decisions with incomplete information, most of them alone. Should you hire that manager? Is it time to renegotiate that contract? How do you handle the conversation you have been putting off for three months? Your companion holds all of it with you.</p>
-            <p class="hero-close">For the leader everyone relies on. Founders, executives, managing directors, the person the decision lands on. If you decide alone, this is built for you.</p>
+            <p class="hero-close">For the leader everyone relies on. Founders, executives, managing directors, the ones wanting to be promoted, and the person the decision lands on. If you frequently decide alone, this is built for you.</p>
             <a href="#pricing" class="hero-cta">
                 Meet your companion
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <p class="hero-note">From AUD $29 a month. Fourteen days to change your mind. Private, always.</p>
         </div>
     </section>
 
@@ -2441,7 +2429,7 @@ body.team-modal-locked {
                         </div>
                         <h3>Who it is for</h3>
                     </div>
-                    <p>For the leader everyone relies on. Founders, executives, managing directors, the person the decision lands on. If you decide alone, this is built for you.</p>
+                    <p>For the leader everyone relies on. Founders, executives, managing directors, the ones wanting to be promoted, and the person the decision lands on. If you frequently decide alone, this is built for you.</p>
                 </div>
             </div>
         </div>
@@ -2680,6 +2668,7 @@ body.team-modal-locked {
                 <button type="button" class="pricing-cta pricing-cta-outline" data-open-team-form>Talk to us</button>
             </div>
         </div>
+        <p class="pricing-note">From AUD $29 a month. Fourteen days to change your mind. Private, always.</p>
     </section>
 
     <!-- WHO MADE IT -->
