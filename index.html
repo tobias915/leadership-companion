@@ -2245,7 +2245,7 @@ body.team-modal-locked {
         <h2 id="leaders-heading">What leaders say:</h2>
         <div class="leaders-viewport">
             <ul class="leaders-track">
-                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="1 of 9">
+                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="1 of 8">
                     <figure>
                         <blockquote class="leaders-quote">It's been designed to be kind by telling the truth, rather than saying what you want to hear or giving the easy answer; an invaluable trait, in both people and products.</blockquote>
                         <blockquote class="leaders-quote is-off">This was a real acid test of the Leadership Companion for me, especially as it was backed up with solid advice on how I could get the accurate answer, and a benchmark for other tools.</blockquote>
@@ -2258,7 +2258,7 @@ body.team-modal-locked {
                         </figcaption>
                     </figure>
                 </li>
-                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="2 of 9">
+                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="2 of 8">
                     <figure>
                         <blockquote class="leaders-quote">When building a company, you often need to make important decisions quickly and with limited information. Leadership Companion helps us structure our thinking and look at challenges from different perspectives before we act.</blockquote>
                         <blockquote class="leaders-quote is-off">Leadership Companion has added real value to our board work. It helps us ask better questions, evaluate different options, and bring more structure to our strategic discussions.</blockquote>
@@ -2272,6 +2272,14 @@ body.team-modal-locked {
                         </figcaption>
                     </figure>
                 </li>
+                <!-- TEMPORARY: Giles Bourne's testimonial removed at his request on 26 October 2026. Restore on 2 November 2026 by uncommenting this block and reversing the three changes noted below.
+
+                     RESTORE STEP 1. The track went from nine cards to eight, so every aria-label on a .leaders-card was renumbered "1 of 8" through "8 of 8" in DOM order. Put them back to "1 of 9" through "9 of 9", with this card third. The label inside this comment is already "3 of 9" and needs no edit.
+
+                     RESTORE STEP 2. The dots are hardcoded markup rather than generated from the card count, so one .leaders-dot button was removed from .leaders-controls below, leaving eight. Add a ninth back with data-index="8" and renumber the "Go to testimonial N of 8" labels to "N of 9".
+
+                     RESTORE STEP 3. The opening card was deliberately NOT changed. The carousel script reads "let active = cards.length > 1 ? 1 : 0", which selects the second card: that is Robin today and Robin again once this card returns, so there is nothing to reverse.
+
                 <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="3 of 9">
                     <figure>
                         <blockquote class="leaders-quote">I put a genuinely challenging issue to the Leadership Companion and refined it over a few prompts. The guidance that came back was sharp enough to change how I handled it.</blockquote>
@@ -2284,7 +2292,8 @@ body.team-modal-locked {
                         </figcaption>
                     </figure>
                 </li>
-                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="4 of 9">
+                -->
+                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="3 of 8">
                     <figure>
                         <blockquote class="leaders-quote">Leadership companion does NOT give you answers; it asks questions, it follows up so you have YOUR clarity and accountability.</blockquote>
                         <figcaption>
@@ -2296,7 +2305,7 @@ body.team-modal-locked {
                         </figcaption>
                     </figure>
                 </li>
-                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="5 of 9">
+                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="4 of 8">
                     <figure>
                         <blockquote class="leaders-quote">It's not co-pilot, it's not Claude, it's none of those things. It's something more questioning and with the bias to action. It helps me talk through and think through ideas.</blockquote>
                         <blockquote class="leaders-quote is-off">Leadership Companion sits next to a leader, asks better questions instead of handing down answers, and pushes toward a decision rather than letting someone sit in the analysis.</blockquote>
@@ -2309,7 +2318,7 @@ body.team-modal-locked {
                         </figcaption>
                     </figure>
                 </li>
-                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="6 of 9">
+                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="5 of 8">
                     <figure>
                         <blockquote class="leaders-quote">Very intuitive, relevant responses and questions, moving the analysis and conversation forward. It also nicely connects and bridges previous sessions.</blockquote>
                         <figcaption>
@@ -2321,7 +2330,7 @@ body.team-modal-locked {
                         </figcaption>
                     </figure>
                 </li>
-                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="7 of 9">
+                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="6 of 8">
                     <figure>
                         <blockquote class="leaders-quote">The Leadership Companion goes beneath the surface of what is said and done to reveal the motivations and behavioural patterns driving it.</blockquote>
                         <figcaption>
@@ -2333,7 +2342,7 @@ body.team-modal-locked {
                         </figcaption>
                     </figure>
                 </li>
-                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="8 of 9">
+                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="7 of 8">
                     <figure>
                         <blockquote class="leaders-quote">It shocked me how it is able to see through the noise and finds kernels of insight and real wisdom.</blockquote>
                         <blockquote class="leaders-quote is-off">On the whole, it is refreshingly different from all the other tools I have used, the strong outcome / change focus is unique and the ability to hold me accountable to my future self.</blockquote>
@@ -2346,7 +2355,7 @@ body.team-modal-locked {
                         </figcaption>
                     </figure>
                 </li>
-                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="9 of 9">
+                <li class="leaders-card" role="group" aria-roledescription="slide" aria-label="8 of 8">
                     <figure>
                         <blockquote class="leaders-quote">The leadership companion has been great for me to challenge me when I am stuck and support me when things are hard.</blockquote>
                         <blockquote class="leaders-quote is-off">I would recommend it to anyone who manages people, who cares about fostering successful relationships in all aspects of their life and wants to go on a journey to understand and find light bulb moments - not just get spoon fed an answer from the ether like it can feel like with other AI tools.</blockquote>
@@ -2373,15 +2382,14 @@ body.team-modal-locked {
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
             </button>
             <div class="leaders-dots">
-                    <button type="button" class="leaders-dot is-active" data-index="0" aria-label="Go to testimonial 1 of 9" aria-current="true"></button>
-                    <button type="button" class="leaders-dot" data-index="1" aria-label="Go to testimonial 2 of 9"></button>
-                    <button type="button" class="leaders-dot" data-index="2" aria-label="Go to testimonial 3 of 9"></button>
-                    <button type="button" class="leaders-dot" data-index="3" aria-label="Go to testimonial 4 of 9"></button>
-                    <button type="button" class="leaders-dot" data-index="4" aria-label="Go to testimonial 5 of 9"></button>
-                    <button type="button" class="leaders-dot" data-index="5" aria-label="Go to testimonial 6 of 9"></button>
-                    <button type="button" class="leaders-dot" data-index="6" aria-label="Go to testimonial 7 of 9"></button>
-                    <button type="button" class="leaders-dot" data-index="7" aria-label="Go to testimonial 8 of 9"></button>
-                    <button type="button" class="leaders-dot" data-index="8" aria-label="Go to testimonial 9 of 9"></button>
+                    <button type="button" class="leaders-dot is-active" data-index="0" aria-label="Go to testimonial 1 of 8" aria-current="true"></button>
+                    <button type="button" class="leaders-dot" data-index="1" aria-label="Go to testimonial 2 of 8"></button>
+                    <button type="button" class="leaders-dot" data-index="2" aria-label="Go to testimonial 3 of 8"></button>
+                    <button type="button" class="leaders-dot" data-index="3" aria-label="Go to testimonial 4 of 8"></button>
+                    <button type="button" class="leaders-dot" data-index="4" aria-label="Go to testimonial 5 of 8"></button>
+                    <button type="button" class="leaders-dot" data-index="5" aria-label="Go to testimonial 6 of 8"></button>
+                    <button type="button" class="leaders-dot" data-index="6" aria-label="Go to testimonial 7 of 8"></button>
+                    <button type="button" class="leaders-dot" data-index="7" aria-label="Go to testimonial 8 of 8"></button>
             </div>
         </div>
     </section>
