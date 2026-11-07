@@ -191,7 +191,7 @@
                 "name": "How has security been tested?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Independent specialists attacked Leadership Companion with and without AI, running more than 15,000 adversarial tests, with zero compromises. Data is encrypted with AES-256 at rest and TLS in transit, there is no public database access, and personal information is kept out of logs. We are working towards ISO 27001 and SOC 2."
+                    "text": "Bank-grade security. Independent specialists tried to break into Leadership Companion, with and without AI, running more than 15,000 attacks, and none succeeded. Your conversations are encrypted, our databases cannot be reached from the internet, and personal details are kept out of our system logs. We are working towards ISO 27001 and SOC 2."
                 }
             },
             {
@@ -324,7 +324,7 @@
             },
             {
                 "@type": "Question",
-                "name": "Is it built for Australian businesses?",
+                "name": "Does it work outside Australia?",
                 "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "Leadership Companion is Australian in origin and priced in AUD, and it is built for leaders anywhere. Every approach inside it is one the founders found to be world class, drawn from working personally across five continents and more than 30 countries. Nothing is here because it is local. It is here because it is the best they found. The companion is already used in multiple languages by leaders around the world, and it adapts to wherever you are and whatever you are navigating."
@@ -645,8 +645,10 @@
             transform: rotate(180deg);
         }
 
-        /* visibility, not just height, so a closed answer leaves the
-           accessibility tree and nothing inside it can be tabbed to */
+        /* The open height is set from the content by the script, so a long
+           answer can never be clipped. visibility, not just height, so a closed
+           answer leaves the accessibility tree and nothing inside it can be
+           tabbed to. */
         .faq-answer-wrapper {
             max-height: 0;
             overflow: hidden;
@@ -655,7 +657,6 @@
         }
 
         .faq-item.open .faq-answer-wrapper {
-            max-height: 600px;
             visibility: visible;
         }
 
@@ -678,10 +679,6 @@
 
         /* The Who built it answer runs to three paragraphs, so it needs more
            room than the shared accordion height allows */
-        .faq-item.open .faq-answer-wrapper.is-tall {
-            max-height: 1400px;
-        }
-
         /* ===== CTA SECTION ===== */
         .faq-cta {
             text-align: center;
@@ -1241,7 +1238,7 @@
                     </button>
                 </h3>
                 <div class="faq-answer-wrapper" id="faq-a-10">
-                    <div class="faq-answer">Independent specialists attacked Leadership Companion with and without AI, running more than 15,000 adversarial tests, with zero compromises. Data is encrypted with AES-256 at rest and TLS in transit, there is no public database access, and personal information is kept out of logs. We are working towards ISO 27001 and SOC 2.</div>
+                    <div class="faq-answer">Bank-grade security. Independent specialists tried to break into Leadership Companion, with and without AI, running more than 15,000 attacks, and none succeeded. Your conversations are encrypted, our databases cannot be reached from the internet, and personal details are kept out of our system logs. We are working towards ISO 27001 and SOC 2.</div>
                 </div>
             </div>
 
@@ -1450,7 +1447,7 @@
             <div class="faq-item">
                 <h3 class="faq-heading">
                     <button type="button" class="faq-question" id="faq-q-27" aria-expanded="false" aria-controls="faq-a-27" onclick="toggleFaq(this)">
-                        <span class="faq-question-text">Is it built for Australian businesses?</span>
+                        <span class="faq-question-text">Does it work outside Australia?</span>
                         <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
                     </button>
                 </h3>
@@ -1512,7 +1509,7 @@
                         <span class="faq-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
                     </button>
                 </h3>
-                <div class="faq-answer-wrapper is-tall" id="faq-a-31">
+                <div class="faq-answer-wrapper" id="faq-a-31">
                     <div class="faq-answer">
                         <p>Kristina wrote the way your companion speaks. What it listens for in you, the strength before the story, the belief that holds when yours does not, is what she has spent her career finding in leaders and what she built here first for herself. Masters in Educational Psychology, University of Sydney. HeartMath practitioner. Clarity4D business partner. Co-author of a book from interviews with 50 CEOs and board members, out soon.</p>
                         <p>Tobias designed and built everything that makes your companion run, remember and stay private. He is ex Amazon Web Services C-suite and a McKinsey expert, and held very senior roles at Macquarie and CBA before this, trained at KTH Royal Institute of Technology in Sweden. He has worked in more than 30 countries across 15 industries. He knows what a hard stretch is like with only a general approach or tool to think with, and he loves helping leaders through those stretches. That is why he does this.</p>
@@ -1526,8 +1523,8 @@
 
     <!-- SEO CONTENT (HIDDEN) -->
     <div class="seo-content" aria-hidden="true">
-        <h2>AI Business Advisor for Australian Leaders</h2>
-        <p>Leadership Companion is an AI-powered business advisor and leadership coaching tool designed for founders, CEOs, managing directors, and senior leaders in Australia and globally. Unlike generic AI assistants such as ChatGPT, Leadership Companion remembers your business context across every conversation and provides personalised guidance on cash flow management, team leadership, strategic decision-making, hiring, people management, business growth, and executive resilience.</p>
+        <h2>AI Leadership Advisor for Leaders Everywhere</h2>
+        <p>Leadership Companion is an AI-powered business advisor and leadership coaching tool designed for founders, CEOs, managing directors, and senior leaders around the world. Unlike generic AI assistants such as ChatGPT, Leadership Companion remembers your business context across every conversation and provides personalised guidance on cash flow management, team leadership, strategic decision-making, hiring, people management, business growth, and executive resilience.</p>
 
         <h3>AI Coach for Small Business Owners</h3>
         <p>Small business owners and SME leaders across construction, professional services, healthcare, retail, trades, and consulting use Leadership Companion as their private AI business coach. It helps with pricing decisions, difficult employee conversations, cash flow forecasting, strategic planning, and leadership development. Available 24/7 from any device, it costs a fraction of traditional business coaching or executive advisory services.</p>
@@ -1536,13 +1533,13 @@
         <p>Leadership Companion tracks your decisions over time, follows up on commitments you make, and recognises patterns in how you lead. It combines behavioural science with AI to deliver a longitudinal coaching experience that improves the longer you use it. Proactive Monday morning focus emails and Friday reflections keep you accountable between sessions.</p>
 
         <h3>Alternative to Executive Coaching and Peer Advisory Groups</h3>
-        <p>For leaders considering executive coaching, Vistage, EO, YPO, or other peer advisory groups, Leadership Companion provides complementary daily decision support. It fills the gap between monthly coaching sessions or peer group meetings, available whenever you need to think through a decision, prepare for a difficult conversation, or work through a business challenge. Built in Australia, priced in AUD, with bank-grade encryption and full privacy compliance.</p>
+        <p>For leaders considering executive coaching, Vistage, EO, YPO, or other peer advisory groups, Leadership Companion provides complementary daily decision support. It fills the gap between monthly coaching sessions or peer group meetings, available whenever you need to think through a decision, prepare for a difficult conversation, or work through a business challenge. Built in Australia for leaders everywhere, with bank-grade security.</p>
 
         <h3>AI Business Advisor That Remembers Everything</h3>
         <p>The core difference between Leadership Companion and other AI tools is memory. Multiple layers of memory mean the companion builds a deep, longitudinal understanding of your business, your team, your decision patterns, and your growth as a leader. After three months, it surfaces patterns you would never see yourself. Your data is encrypted, stored on AWS in Australia, and never used for AI model training.</p>
 
         <h3>Secure AI for Corporate Leaders and Executives</h3>
-        <p>Leadership Companion is built for leaders who work in environments with strict data governance. Running on Anthropic's Claude via AWS with AES-256 encryption, it meets the security requirements of corporate, government, and enterprise environments. No email or calendar integrations means no access to corporate systems. Conversations are standalone, private, and fully encrypted. Australian Privacy Act compliant and GDPR-ready.</p>
+        <p>Bank-grade security, independently tested by specialists who tried to break in, with zero compromises. It does not connect to your email or calendar, so it has no access to your company's systems. Your conversations are private, even from your employer. Built to Australian and European privacy law.</p>
     </div>
 
     <!-- CTA SECTION -->
@@ -1580,6 +1577,18 @@
         });
 
         // Accordion logic: only one open at a time across all categories
+        function closeFaq(item) {
+            item.classList.remove('open');
+            var btn = item.querySelector('.faq-question');
+            if (btn) {
+                btn.setAttribute('aria-expanded', 'false');
+            }
+            var panel = item.querySelector('.faq-answer-wrapper');
+            if (panel) {
+                panel.style.maxHeight = null;
+            }
+        }
+
         function toggleFaq(questionEl) {
             // The button sits inside a heading now, so walk up to the card
             // rather than assuming the button is its direct child
@@ -1589,19 +1598,39 @@
 
             // Close all items
             for (var i = 0; i < allItems.length; i++) {
-                allItems[i].classList.remove('open');
-                var otherBtn = allItems[i].querySelector('.faq-question');
-                if (otherBtn) {
-                    otherBtn.setAttribute('aria-expanded', 'false');
-                }
+                closeFaq(allItems[i]);
             }
 
-            // If the clicked item was not already open, open it
+            // If the clicked item was not already open, open it. The height
+            // comes from the content, so no answer can be clipped however long
+            // it grows.
             if (!isOpen) {
                 item.classList.add('open');
                 questionEl.setAttribute('aria-expanded', 'true');
+                var panel = item.querySelector('.faq-answer-wrapper');
+                if (panel) {
+                    panel.style.maxHeight = panel.scrollHeight + 'px';
+                }
             }
         }
+
+        // An open answer reflows when the window is resized, so its height has
+        // to be measured again or it would clip or leave a gap
+        var faqResizeTimer = null;
+        window.addEventListener('resize', function () {
+            window.clearTimeout(faqResizeTimer);
+            faqResizeTimer = window.setTimeout(function () {
+                var open = document.querySelector('.faq-item.open .faq-answer-wrapper');
+                if (!open) {
+                    return;
+                }
+                var previous = open.style.transition;
+                open.style.transition = 'none';
+                open.style.maxHeight = open.scrollHeight + 'px';
+                void open.offsetWidth;
+                open.style.transition = previous;
+            }, 120);
+        });
 
     </script>
 
